@@ -43,6 +43,12 @@ import { ChartsModule } from 'ng2-charts';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { NavbarcustomComponent } from './navbarcustom/navbarcustom.component';
 import { FootercustomComponent } from './footercustom/footercustom.component';
+import { LogincustomerComponent } from './logincustomer/logincustomer.component';
+import { ListcomplaintsComponent } from './listcomplaints/listcomplaints.component';
+import { DetailcomplaintComponent } from './detailcomplaint/detailcomplaint.component';
+import { EntercomplaintComponent } from './entercomplaint/entercomplaint.component';
+import { ListbanksComponent } from './listbanks/listbanks.component';
+import { SignupcustomerComponent } from './signupcustomer/signupcustomer.component';
 
 @NgModule({
   imports: [
@@ -68,7 +74,13 @@ import { FootercustomComponent } from './footercustom/footercustom.component';
     RegisterComponent,
     MainpageComponent,
     NavbarcustomComponent,
-    FootercustomComponent
+    FootercustomComponent,
+    LogincustomerComponent,
+    ListcomplaintsComponent,
+    DetailcomplaintComponent,
+    EntercomplaintComponent,
+    ListbanksComponent,
+    SignupcustomerComponent
   ],
   providers: [{
     provide: LocationStrategy,
