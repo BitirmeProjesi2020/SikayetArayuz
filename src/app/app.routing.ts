@@ -23,32 +23,32 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'UyeOl',
+    path: 'uye-Ol',
     component: SignupcustomerComponent,
     pathMatch: 'full',
   },
   {
-    path: 'UyeGirisi',
+    path: 'uye-girisi',
     component: LogincustomerComponent,
     pathMatch: 'full',
   },
   {
-    path: 'Sikayetler',
+    path: 'sikayetler',
     component: ListcomplaintsComponent,
     pathMatch: 'full',
   },
   {
-    path: 'SikayetDetay',
+    path: 'sikayet-detay',
     component: DetailcomplaintComponent,
     pathMatch: 'full',
   },
   {
-    path: 'YeniSikayet',
+    path: 'yeni-sikayet',
     component: EntercomplaintComponent,
     pathMatch: 'full',
   },
   {
-    path: 'Bankalar',
+    path: 'bankalar',
     component: ListbanksComponent,
     pathMatch: 'full',
   },
