@@ -42,6 +42,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { NavbarcustomComponent } from './navbarcustom/navbarcustom.component';
+import { FootercustomComponent } from './footercustom/footercustom.component';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import { NavbarcustomComponent } from './navbarcustom/navbarcustom.component';
     LoginComponent,
     RegisterComponent,
     MainpageComponent,
-    NavbarcustomComponent
+    NavbarcustomComponent,
+    FootercustomComponent
   ],
   providers: [{
     provide: LocationStrategy,
