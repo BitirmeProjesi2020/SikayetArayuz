@@ -40,6 +40,8 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { NavbarcustomComponent } from './navbarcustom/navbarcustom.component';
 
 @NgModule({
   imports: [
@@ -62,7 +64,9 @@ import { ChartsModule } from 'ng2-charts';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainpageComponent,
+    NavbarcustomComponent
   ],
   providers: [{
     provide: LocationStrategy,
