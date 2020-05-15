@@ -9,11 +9,47 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import {MainpageComponent} from './mainpage/mainpage.component';
+import { SignupcustomerComponent } from './signupcustomer/signupcustomer.component';
+import { LogincustomerComponent } from './logincustomer/logincustomer.component';
+import { ListcomplaintsComponent } from './listcomplaints/listcomplaints.component';
+import { DetailcomplaintComponent } from './detailcomplaint/detailcomplaint.component';
+import { EntercomplaintComponent } from './entercomplaint/entercomplaint.component';
+import { ListbanksComponent } from './listbanks/listbanks.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainpageComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'UyeOl',
+    component: SignupcustomerComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'UyeGirisi',
+    component: LogincustomerComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'Sikayetler',
+    component: ListcomplaintsComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'SikayetDetay',
+    component: DetailcomplaintComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'YeniSikayet',
+    component: EntercomplaintComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'Bankalar',
+    component: ListbanksComponent,
     pathMatch: 'full',
   },
   {
