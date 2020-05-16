@@ -1,0 +1,20 @@
+.position-mid {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+}
+
+.complaints-short {
+  width: 95%;
+  height: 150px;
+  background-color: white;
+  border: 1px solid;
+  border-color: #20A8D8;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.nav-sikayet {
+  background-color: #E8EEF3;
+  padding: 10px;
+}
