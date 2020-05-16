@@ -4,6 +4,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  padding: 10px 0px 0px 0px;
   text-align: center;
   background-color: #404040;
 }
@@ -20,4 +21,8 @@
 
 .footer-text{
     color: white;
+}
+
+li{
+padding:2px;
 }
