@@ -1,1 +1,42 @@
-<p>listbanks works!</p>
+<app-navbarcustom></app-navbarcustom>
+
+<div class="nav-bank">
+    <div class="container">
+        <div class="row">
+            <nav class="nav">
+                <a class="nav-link" href="/#/bankalar">Bankalar <span class="sr-only">(current)</span></a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <br>
+    <div class="row card-group">
+        <div class="col-4"  *ngFor="let bank of banks">
+            <div class="card border-info">
+                <div class="card-body">
+
+                    <h5 class="card-title text-center">{{bank.bankName}} İstatistikleri</h5>
+
+                    <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
+                     Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
+                    <br>
+
+                    <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
+                     Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
+                    <br>
+
+                    <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+                     Memnuniyet Oranı: %{{bank.happyRate}}
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-footercustom></app-footercustom>
