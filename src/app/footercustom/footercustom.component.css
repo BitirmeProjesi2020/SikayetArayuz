@@ -1,27 +1,24 @@
 
 .footer-area {
-  left: 0;
-  bottom: 0;
+  left: 0px;
+  bottom: 0px;
+  padding-top: 10px;
   width: 100%;
-  padding: 10px 0px 0px 0px;
   text-align: center;
   background-color: #404040;
 }
-
 .footer-copyright{
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     background-color: #333333;
     color: white;
     text-align: center;
 }
-
 .footer-text{
     color: white;
 }
-
 li{
 padding:2px;
 }
