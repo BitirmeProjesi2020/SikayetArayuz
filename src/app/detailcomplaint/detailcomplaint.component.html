@@ -1,1 +1,97 @@
-<p>detailcomplaint works!</p>
+<app-navbarcustom></app-navbarcustom>
+
+
+<div class="d-flex justify-content-between position-mid">
+    <div class="col-9">
+        <!-- Sikayet Detaylı -->
+        <div class="card border-info detail-card">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <h6>{{complaint.title}}</h6>
+                        </div>
+                        <div class="col-auto">
+                            <h6>{{bank.bankName}}</h6>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <h6>{{complaint.customerName}}</h6>
+                        </div>
+                        <div class="col-auto">
+                            <h6>{{complaint.date | date:'fullDate'}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <label style="text-align: start">{{complaint.detCompText}}</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <h6>Kategori: {{complaint.category}}</h6>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn button-comment" (click)="Comment()">
+                                <h6>YORUM YAP</h6>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Sikayet Cevapları -->
+        <div class="card border-info detail-card">
+            <div class="card-body">
+                <div class="container">
+                    <h6 class="card-title text-center">CEVAPLAR</h6>
+                    <div class="row" *ngFor="let answer of answers">
+
+                        <div class="col-auto mr-auto">
+                            <h6>{{answer.bankName}}</h6>
+                        </div>
+                        <div class="col-auto">
+                            <h6>{{answer.date | date:'fullDate'}}</h6>
+                        </div>
+
+                        <div class="col-auto mr-auto">
+                            <label style="text-align: start">{{answer.message}}</label>
+                        </div>
+                        
+                        <hr>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sikayet Bankası -->
+    <div class="col-3">
+        <div class="card border-info detail-card">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{bank.bankName}} İstatistikleri</h5>
+
+                <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
+                Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
+                <br>
+
+                <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
+                Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
+                <br>
+
+                <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+                Memnuniyet Oranı: %{{bank.happyRate}}
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footercustom></app-footercustom>

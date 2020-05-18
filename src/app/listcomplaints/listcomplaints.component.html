@@ -38,156 +38,27 @@
   </div>
   <div class="col-10">
     <div style="overflow-y: scroll; height:700px; text-align: center">
-      <button class="complaints-short">
+      <button class="complaints-short" *ngFor="let complaint of complaints" (click)="ShowDetailComp(complaint.id)">
         <div class="container">
           <div class="row">
             <div class="col-auto mr-auto">
-              <h6>Onaylanan Kredimi Kullanamıyorum !</h6>
+              <h6>{{complaint.title}}</h6>
             </div>
             <div class="col-auto">
-              <h6>A Bankası</h6>
+              <h6>{{complaint.bankName}}</h6>
             </div>
           </div>
           <div class="row">
             <div class="col-auto mr-auto">
-              <h6>Ercan Özkan</h6>
+              <h6>{{complaint.customerName}}</h6>
             </div>
             <div class="col-auto">
-              <h6>20 Şubat 2020</h6>
+              <h6>{{complaint.date | date:'fullDate'}}</h6>
             </div>
           </div>
           <div class="row">
             <div class="col-auto mr-auto">
-              <label style="text-align: start">Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaa
-                aaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamını
-                oku...</label>
-            </div>
-          </div>
-        </div>
-      </button>
-
-      <button class="complaints-short">
-        <div class="container">
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Onaylanan Kredimi Kullanamıyorum !</h6>
-            </div>
-            <div class="col-auto">
-              <h6>A Bankası</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Ercan Özkan</h6>
-            </div>
-            <div class="col-auto">
-              <h6>20 Şubat 2020</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <label style="text-align: start">Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaa
-                aaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamını
-                oku...</label>
-            </div>
-          </div>
-        </div>
-      </button>
-
-      <button class="complaints-short">
-        <div class="container">
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Onaylanan Kredimi Kullanamıyorum !</h6>
-            </div>
-            <div class="col-auto">
-              <h6>A Bankası</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Ercan Özkan</h6>
-            </div>
-            <div class="col-auto">
-              <h6>20 Şubat 2020</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <label style="text-align: start">Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaa
-                aaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamını
-                oku...</label>
-            </div>
-          </div>
-        </div>
-      </button>
-
-      <button class="complaints-short">
-        <div class="container">
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Onaylanan Kredimi Kullanamıyorum !</h6>
-            </div>
-            <div class="col-auto">
-              <h6>A Bankası</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Ercan Özkan</h6>
-            </div>
-            <div class="col-auto">
-              <h6>20 Şubat 2020</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <label style="text-align: start">Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaa
-                aaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamını
-                oku...</label>
-            </div>
-          </div>
-        </div>
-      </button>
-
-      <button class="complaints-short">
-        <div class="container">
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Onaylanan Kredimi Kullanamıyorum !</h6>
-            </div>
-            <div class="col-auto">
-              <h6>A Bankası</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <h6>Ercan Özkan</h6>
-            </div>
-            <div class="col-auto">
-              <h6>20 Şubat 2020</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto mr-auto">
-              <label style="text-align: start">Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaa
-                aaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamını
-                oku...</label>
+              <label style="text-align: start">{{complaint.compText}}</label>
             </div>
           </div>
         </div>
@@ -196,5 +67,5 @@
   </div>
 </div>
 
-
+<br><br><br><br><br>
 <app-footercustom></app-footercustom>

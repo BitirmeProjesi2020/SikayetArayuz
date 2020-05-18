@@ -1,0 +1,35 @@
+.position-mid {
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+.detail-card {
+  width: 95%;
+  background-color: white;
+  border: 1px solid;
+  border-color: #20A8D8;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.button-comment{
+  background-color: white;
+  border-color: white;
+}
+  
+.style1{
+  border-top: 1px solid #8c8b8b;
+}
+  
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+} 

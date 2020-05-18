@@ -38,7 +38,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'sikayet-detay',
+    path: 'sikayet-detay/:compId',
     component: DetailcomplaintComponent,
     pathMatch: 'full',
   },
