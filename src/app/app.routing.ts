@@ -23,7 +23,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'uye-Ol',
+    path: 'uye-ol',
     component: SignupcustomerComponent,
     pathMatch: 'full',
   },
