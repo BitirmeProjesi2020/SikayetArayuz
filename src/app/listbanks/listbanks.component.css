@@ -5,3 +5,10 @@
 a{
     color:black;
 }
+.bank-card {
+    width: 100%;
+    background-color: white;
+    border: 1px solid;
+    border-color: #20A8D8;
+    border-radius: 10px;
+  }
