@@ -1,0 +1,11 @@
+.center_div{
+    margin: 0 auto;
+    width:100% ;
+    padding-top: 20px;
+}
+
+.btn-send{
+    background-color: #333333;
+    width: 100%;
+    color: white;
+}
