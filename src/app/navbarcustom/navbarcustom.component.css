@@ -1,3 +1,14 @@
 .text{
+  color: black;
+}
+.btn-sign-up{
+  background-color: #333333;
+  width: 100%;
+  color: white;
+}
+
+.btn-log-in{
+  background-color: #333333;
+  width: 100%;
   color: white;
 }

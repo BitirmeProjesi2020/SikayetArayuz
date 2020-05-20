@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbarcustom',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarcustomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  logIn() {
+    this.router.navigate(['/uye-girisi']);
+  }
+  signUp() {
+    this.router.navigate(['/uye-ol']);
+  }
+
 
 }

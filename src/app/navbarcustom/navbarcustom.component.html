@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar" style="background-color: #C5E1EB">
   <div class="d-flex justify-content-around" style="width: 100%">
     <div class="p-3">
       <div class="d-flex justify-content-around" style="width: 100%">
@@ -15,14 +15,33 @@
         </div>
       </div>
     </div>
-    <div class="p-3">
-      <ul class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Banka veya şikayet ara..." aria-label="Search"
-                 style="width: 200px;">
-          <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Ara</button>
-        </form>
-      </ul>
+    <div class="p-3 ">
+      <div class="d-flex">
+        <div class="p-2 mr-auto flex-fill">
+          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Banka veya şikayet ara..."
+                aria-label="Search" style="width: 200px;">
+              <button class="btn btn-info  my-sm-0" type="submit">Ara</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="p-2 flex-row-reverse flex-fill ">
+          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+            <button class="btn btn-log-in" type="submit" style="float: right;" (click)="logIn()">Giriş Yap</button>
+          </div>
+        </div>
+
+        <div class="p-2 flex-row-reverse flex-fill">
+          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+            <button class="btn btn-sign-up" type="submit" style="float: right;" (click)="signUp()">Üye Ol</button>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
   </div>
 </nav>
