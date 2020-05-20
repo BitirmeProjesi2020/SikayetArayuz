@@ -14,3 +14,7 @@
     width: 100%;
     color: white;
 }
+
+.content {
+    min-height: calc(70vh - 75px);
+}
