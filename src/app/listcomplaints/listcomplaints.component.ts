@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Complaint } from './Complaint';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SikayetlerService} from '../services/sikayetler.service';
+import {SikayetlerModel} from '../models/sikayetler.model';
 
 @Component({
   selector: 'app-listcomplaints',
@@ -9,37 +10,29 @@ import { Complaint } from './Complaint';
 })
 export class ListcomplaintsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  sikayetlerModelList: SikayetlerModel[];
 
-  complaints: Complaint[] = [];
+  constructor(private router: Router,
+              private sikayetlerService: SikayetlerService) {
+  }
+
 
   ngOnInit(): void {
-
-    this.complaints = [
-      {id:1, title:'Onaylanan Kredimi Kullanamıyorum !', bankName:'A Bankası',customerName:'Ercan Özkan',date:new  Date ("2020,05,18"),
-      compText:'Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaa           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n        aaaaaaaaaaaaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamınıoku...'},
-      
-      {id:2, title:'Onaylanan Kredimi Kullanamıyorum !', bankName:'A Bankası',customerName:'Ercan Özkan',date:new  Date ("2020,05,19"),
-      compText:'Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaa           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n        aaaaaaaaaaaaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamınıoku...'},
-      
-      {id:3, title:'Onaylanan Kredimi Kullanamıyorum !', bankName:'A Bankası',customerName:'Ercan Özkan',date:new  Date ("2020,05,20"),
-      compText:'Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaa           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n        aaaaaaaaaaaaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamınıoku...'},
-      
-      {id:4, title:'Onaylanan Kredimi Kullanamıyorum !', bankName:'A Bankası',customerName:'Ercan Özkan',date:new  Date ("2020,05,21"),
-      compText:'Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaa           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n        aaaaaaaaaaaaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamınıoku...'},
-      
-      {id:5, title:'Onaylanan Kredimi Kullanamıyorum !', bankName:'A Bankası',customerName:'Ercan Özkan',date:new  Date ("2020,05,22"),
-      compText:'Örnek metin aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaa           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n        aaaaaaaaaaaaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa Devamınıoku...'}
-    ];
-
+    this.getSikayetler();
   }
 
   clickEnterComp() {
     this.router.navigate(['/yeni-sikayet']);
   }
 
-  ShowDetailComp(compId:number) {
-    this.router.navigate(['/sikayet-detay/'+compId]);
+  getSikayetler(): void {
+    this.sikayetlerService.getAll().pipe().subscribe((data: SikayetlerModel[]) => {
+      this.sikayetlerModelList = data;
+      console.log(data);
+    });
   }
 
+  showDetailComp(compId: number) {
+    this.router.navigate(['/sikayet-detay/' + compId]);
+  }
 }

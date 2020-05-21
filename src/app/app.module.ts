@@ -49,6 +49,7 @@ import { DetailcomplaintComponent } from './detailcomplaint/detailcomplaint.comp
 import { EntercomplaintComponent } from './entercomplaint/entercomplaint.component';
 import { ListbanksComponent } from './listbanks/listbanks.component';
 import { SignupcustomerComponent } from './signupcustomer/signupcustomer.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { SignupcustomerComponent } from './signupcustomer/signupcustomer.compone
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
