@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-between position-mid">
+<div class="d-flex justify-content-between position-mid body-fix">
   <div class="col-2">
     <div style="margin-top: 15px">
       <label>Bankalar</label>
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="col-10">
-    <div style="overflow-y: scroll; height:700px; text-align: center">
+    <div style="text-align: center">
       <button class="complaints-short" *ngFor="let complaint of complaints" (click)="ShowDetailComp(complaint.id)">
         <div class="container">
           <div class="row">
@@ -67,5 +67,6 @@
   </div>
 </div>
 
-<br><br><br><br><br>
-<app-footercustom></app-footercustom>
+<div class="footer">
+  <app-footercustom></app-footercustom>
+</div>

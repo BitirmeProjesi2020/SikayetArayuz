@@ -1,26 +1,28 @@
 <app-navbarcustom></app-navbarcustom>
 
-<div class="container center_div" style="width:50%">
-    <form >
-        <div class="form-group" >
-            <select class="form-control form-control-lg" >
+<div class="container center_div body-fix" style="width:50%">
+    <form>
+        <div class="form-group">
+            <select class="form-control ">
                 <option>Şikayet edeceğiniz bankayı giriniz.</option>
                 <option *ngFor="let bank of banks">{{bank.bankName}}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <input class="form-control form-control-lg" placeholder="Şikayetinizi özetleyen başlık yazınız.">
+            <input class="form-control " placeholder="Şikayetinizi özetleyen başlık yazınız.">
             <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
         </div>
         <div class="form-group">
-            <input class="form-control form-control-lg" type="tel" placeholder="Banka sisteminde kayıtlı cep telefonunuzu 500-000-00-00 formatında giriniz. "
-            pattern = "[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" title="Telefon numarası 500-000-00-00 bu düzene uymalıdır."
-            >
+            <input class="form-control " type="tel"
+                placeholder="Banka sisteminde kayıtlı cep telefonunuzu 500-000-00-00 formatında giriniz. "
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                title="Telefon numarası 500-000-00-00 bu düzene uymalıdır.">
         </div>
 
         <div class="form-group">
-            <textarea class="form-control form-control-lg" style="height:200px;" placeholder="Şikayetinizi detaylı bir şekilde yazınız."></textarea>
+            <textarea class="form-control " style="height:200px;"
+                placeholder="Şikayetinizi detaylı bir şekilde yazınız."></textarea>
         </div>
 
         <div class="form-group text-right">
@@ -29,4 +31,6 @@
     </form>
 </div>
 
-<app-footercustom></app-footercustom>
+<div class="footer">
+    <app-footercustom></app-footercustom>
+</div>

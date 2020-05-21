@@ -18,3 +18,15 @@
   background-color: #E8EEF3;
   padding: 10px;
 }
+
+.body-fix{
+  padding-bottom: 175px;
+}
+
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+text-align: center;
+}

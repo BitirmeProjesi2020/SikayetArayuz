@@ -10,25 +10,26 @@
     </div>
 </div>
 
-<div class="container">
+
+<div class="container body-fix">
     <br>
-    <div class="row card-group">
-        <div class="col-4"  *ngFor="let bank of banks">
+    <div class="row card-group ">
+        <div class="col-4" *ngFor="let bank of banks">
             <div class="card bank-card border-info">
                 <div class="card-body">
 
                     <h5 class="card-title text-center">{{bank.bankName}} İstatistikleri</h5>
 
                     <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                     Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
+                    Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
                     <br>
 
                     <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                     Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
+                    Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
                     <br>
 
                     <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-                     Memnuniyet Oranı: %{{bank.happyRate}}
+                    Memnuniyet Oranı: %{{bank.happyRate}}
                     <br>
 
                 </div>
@@ -37,4 +38,6 @@
     </div>
 </div>
 
-<app-footercustom></app-footercustom>
+<div class="footer">
+    <app-footercustom></app-footercustom>
+</div>
