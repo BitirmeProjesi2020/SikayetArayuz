@@ -10,6 +10,8 @@ export abstract class BaseService {
 
   public href = '';
 
+  public abstract getEntityName();
+
   getHttp(): HttpClient {
     return this.http;
   }
