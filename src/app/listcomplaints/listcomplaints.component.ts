@@ -28,7 +28,8 @@ export class ListcomplaintsComponent implements OnInit {
   getSikayetler(): void {
     this.sikayetlerService.getAll().pipe().subscribe((data: SikayetlerModel[]) => {
       this.sikayetlerModelList = data;
-      console.log(data);
+      // console.log(data);
+      console.log(this.sikayetlerModelList);
     });
   }
 
