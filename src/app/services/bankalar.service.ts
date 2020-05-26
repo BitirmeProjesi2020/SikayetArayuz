@@ -1,18 +1,17 @@
 import {Injectable} from '@angular/core';
 import {BaseService} from './base.service';
 import {Bankalar} from '../models/bankalar.model';
-import {Sikayetler} from '../models/sikayetler.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SikayetlerService extends BaseService {
+export class BankalarService extends BaseService {
   getEntityName(): string {
-    return 'sikayetler';
+    return 'bankalar';
   }
 
-  add(sikayetler: Sikayetler) {
-    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/add', sikayetler);
+  add(bankalar: Bankalar) {
+    return this.getHttp().post(this.getBaseUrl() + this.getEntityName() + '/add', JSON.stringify(bankalar), {withCredentials: true});
   }
 
   getAll() {

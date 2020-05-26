@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SikayetlerService} from '../services/sikayetler.service';
-import {SikayetlerModel} from '../models/sikayetler.model';
+import {Sikayetler} from '../models/sikayetler.model';
+import {BankalarService} from '../services/bankalar.service';
+import {Bankalar} from '../models/bankalar.model';
 
 @Component({
   selector: 'app-listcomplaints',
@@ -10,9 +12,11 @@ import {SikayetlerModel} from '../models/sikayetler.model';
 })
 export class ListcomplaintsComponent implements OnInit {
 
-  sikayetlerModelList: SikayetlerModel[];
+  sikayetlerList: Sikayetler[];
+  bankalarList: Bankalar[];
 
   constructor(private router: Router,
+              private bankalarService: BankalarService,
               private sikayetlerService: SikayetlerService) {
   }
 
@@ -25,11 +29,24 @@ export class ListcomplaintsComponent implements OnInit {
     this.router.navigate(['/yeni-sikayet']);
   }
 
+  getBankalar() {
+    this.bankalarService.getAll().pipe().subscribe((data: Bankalar[]) => {
+      this.bankalarList = data;
+      this.bankalarList.forEach(banka => {
+        this.sikayetlerList.forEach(sikayet => {
+          if (banka.id === sikayet.bankaId) {
+            sikayet.bankaId = banka.ad;
+          }
+        });
+      });
+    });
+  }
+
   getSikayetler(): void {
-    this.sikayetlerService.getAll().pipe().subscribe((data: SikayetlerModel[]) => {
-      this.sikayetlerModelList = data;
-      // console.log(data);
-      console.log(this.sikayetlerModelList);
+    this.sikayetlerService.getAll().pipe().subscribe((data: Sikayetler[]) => {
+      this.sikayetlerList = data;
+      console.log(this.sikayetlerList);
+      this.getBankalar();
     });
   }
 

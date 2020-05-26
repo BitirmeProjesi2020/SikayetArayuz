@@ -1,14 +1,23 @@
-export class SikayetlerModel {
+export class Sikayetler {
   id: number;
-  bankaId; // TODO: bankalar
+  bankaId;
   sikayetBasligi: string;
   sikayetTelefonNo: string;
   sikayetIcerigi: string;
-  sikayetKategorisi; //BankaKategorileri
+  sikayetKategorisi: number;
   sikayetTarihi: number;
-  isSolved: Boolean;
-  isShowName: Boolean;
-  kullanici; //Kullanicilar
-  kullaniciCevaplariList: any[]; //KullaniciCevaplari
-  bankaCalisanlariCevaplariList: any[]; //BankaCalisanlariCevaplari
+  solved: boolean;
+  showName: boolean;
+  kullanici: number;
+
+  constructor(bankaId, sikayetBasligi: string, sikayetTelefonNo: string, sikayetIcerigi: string, sikayetKategorisi: number, solved: boolean, showName: boolean, kullanici: number) {
+    this.bankaId = bankaId;
+    this.sikayetBasligi = sikayetBasligi;
+    this.sikayetTelefonNo = sikayetTelefonNo;
+    this.sikayetIcerigi = sikayetIcerigi;
+    this.sikayetKategorisi = sikayetKategorisi;
+    this.solved = solved;
+    this.showName = showName;
+    this.kullanici = kullanici;
+  }
 }

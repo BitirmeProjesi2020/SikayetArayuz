@@ -50,6 +50,7 @@ import { EntercomplaintComponent } from './entercomplaint/entercomplaint.compone
 import { ListbanksComponent } from './listbanks/listbanks.component';
 import { SignupcustomerComponent } from './signupcustomer/signupcustomer.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

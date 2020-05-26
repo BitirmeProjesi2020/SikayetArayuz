@@ -7,7 +7,7 @@
         <h4>Tüm Şikayetler</h4>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn btn-pill btn-dark">Şikayet Yaz</button>
+        <button type="button" class="btn btn-pill btn-dark" (click)="clickEnterComp()">Şikayet Yaz</button>
       </div>
     </div>
   </div>
@@ -38,8 +38,8 @@
   </div>
   <div class="col-10">
     <div style="overflow-y: scroll; height:400px; text-align: center">
-      <div *ngFor="let sikayet of this.sikayetlerModelList">
-        <button class="complaints-short">
+      <div *ngFor="let sikayet of this.sikayetlerList">
+        <button class="complaints-short" (click)="showDetailComp(sikayet.id)">
           <div class="container">
             <div class="row">
               <div class="col-auto mr-auto">
@@ -54,7 +54,7 @@
                 <h6>{{sikayet.kullanici}}</h6>
               </div>
               <div class="col-auto">
-                <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy hh:mm'}}</h6>
+                <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
               </div>
             </div>
             <div class="row">
