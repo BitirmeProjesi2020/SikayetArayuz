@@ -4,6 +4,8 @@ import {SikayetlerService} from '../services/sikayetler.service';
 import {Sikayetler} from '../models/sikayetler.model';
 import {BankalarService} from '../services/bankalar.service';
 import {Bankalar} from '../models/bankalar.model';
+import {Kullanicilar} from '../models/kullanicilar.model';
+import {KullanicilarService} from '../services/kullanicilar.service';
 
 @Component({
   selector: 'app-listcomplaints',
@@ -14,15 +16,19 @@ export class ListcomplaintsComponent implements OnInit {
 
   sikayetlerList: Sikayetler[];
   bankalarList: Bankalar[];
+  kullanicilarList: Kullanicilar[];
 
   constructor(private router: Router,
               private bankalarService: BankalarService,
-              private sikayetlerService: SikayetlerService) {
+              private sikayetlerService: SikayetlerService,
+              private kullanicilarService: KullanicilarService) {
   }
 
 
   ngOnInit(): void {
     this.getSikayetler();
+    this.getBankalar();
+    this.getKullanicilar();
   }
 
   clickEnterComp() {
@@ -42,11 +48,22 @@ export class ListcomplaintsComponent implements OnInit {
     });
   }
 
+  getKullanicilar(): void {
+    this.kullanicilarService.getAll().pipe().subscribe((data: Kullanicilar[]) => {
+      this.kullanicilarList = data;
+      this.kullanicilarList.forEach(kullanici => {
+        this.sikayetlerList.forEach(sikayet => {
+          if (kullanici.id === sikayet.kullanici) {
+            sikayet.kullanici = kullanici.adSoyad;
+          }
+        });
+      });
+    });
+  }
+
   getSikayetler(): void {
     this.sikayetlerService.getAll().pipe().subscribe((data: Sikayetler[]) => {
       this.sikayetlerList = data;
-      console.log(this.sikayetlerList);
-      this.getBankalar();
     });
   }
 

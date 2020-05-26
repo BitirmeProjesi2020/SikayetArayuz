@@ -8,7 +8,7 @@ export class Sikayetler {
   sikayetTarihi: number;
   solved: boolean;
   showName: boolean;
-  kullanici: number;
+  kullanici;
 
   constructor(bankaId, sikayetBasligi: string, sikayetTelefonNo: string, sikayetIcerigi: string, sikayetKategorisi: number, solved: boolean, showName: boolean, kullanici: number) {
     this.bankaId = bankaId;
