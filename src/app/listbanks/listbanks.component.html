@@ -14,22 +14,24 @@
 <div class="container body-fix">
     <br>
     <div class="row card-group ">
-        <div class="col-4" *ngFor="let bank of banks">
+        <div class="col-4" *ngFor="let bank of this.bankalarList">
             <div class="card bank-card border-info">
                 <div class="card-body">
 
-                    <h5 class="card-title text-center">{{bank.bankName}} İstatistikleri</h5>
+                    <h5 class="card-title text-center">{{bank.ad}} İstatistikleri</h5>
 
                     <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                    Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
+                    Toplam Şikayet Sayısı: {{bank.mevcutSikayet}}
                     <br>
 
                     <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                    Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
+                    Çözülen Şikayet Sayısı: {{bank.cozulenSikayet}}
                     <br>
 
                     <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-                    Memnuniyet Oranı: %{{bank.happyRate}}
+                    <div *ngIf="bank.mevcutSikayet!=0; else elseBlock">
+                        Memnuniyet Oranı: %{{(bank.cozulenSikayet)/(bank.mevcutSikayet)}}
+                    </div>
                     <br>
 
                 </div>
@@ -37,6 +39,10 @@
         </div>
     </div>
 </div>
+
+<ng-template #elseBlock>
+    Memnuniyet Oranı: %{{0}}
+</ng-template>
 
 <div class="footer">
     <app-footercustom></app-footercustom>
