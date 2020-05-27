@@ -27,8 +27,6 @@ export class ListcomplaintsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSikayetler();
-    this.getBankalar();
-    this.getKullanicilar();
   }
 
   clickEnterComp() {
@@ -64,6 +62,8 @@ export class ListcomplaintsComponent implements OnInit {
   getSikayetler(): void {
     this.sikayetlerService.getAll().pipe().subscribe((data: Sikayetler[]) => {
       this.sikayetlerList = data;
+      this.getBankalar();
+      this.getKullanicilar();
     });
   }
 
