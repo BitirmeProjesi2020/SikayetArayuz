@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DetailComp } from './detailComp';
-import { Bank } from '../listbanks/bank';
-import { Answer } from './answer';
-
+import {SikayetlerService} from '../services/sikayetler.service';
+import {Sikayetler} from '../models/sikayetler.model';
+import {BankalarService} from '../services/bankalar.service';
+import {Bankalar} from '../models/bankalar.model';
+import {Kullanicilar} from '../models/kullanicilar.model';
+import {KullanicilarService} from '../services/kullanicilar.service';
 
 @Component({
   selector: 'app-detailcomplaint',
@@ -12,45 +14,55 @@ import { Answer } from './answer';
 })
 export class DetailcomplaintComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
-    
-   }
+  banka: Bankalar;
+  sikayet: Sikayetler;
+  kullanici: Kullanicilar;
 
-   complaint:DetailComp;
-   bank:Bank;
-   answers:Answer[] = [];
+  constructor(private route: ActivatedRoute,
+              private sikayetlerService: SikayetlerService,
+              private bankalarService: BankalarService,
+              private kullanicilarService: KullanicilarService) {
+  
+   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params.compId;
-    this.getComp(id);
-    this.getBank(this.complaint.bankId);
-    this.getAnswers(id);
-
+    this.getSikayet(id);
+    //this.getBanka(this.sikayet.bankaId);
+    //this.getKullanici(this.sikayet.kullanici);
   }
 
-  getComp(compid){
-    //Ayrıntılı sikayet bilgileri cekilecek ve complaint objesine atanacak. compid şikayet id'sini temsil ediyor. 
-    //Bu degere göre cekebilirsin.
-    this.complaint = {id:Number(compid), title:'Onaylanan Kredimi Kullanamıyorum !', bankId:1,customerName:'Ercan Özkan',date:new  Date ("2020,05,18"),
-    detCompText:"Bu olay defalarca kez başıma gelmiştir. En yakın  şubesine gidiniz yazıyor. 3-4 lira için kim şubeye gider? Ama bu olay defalarca olunca tak ediyor. Örtbas edilmeye mi çalışılıyor. Madem ünite bozuk, para yatırma tutarım kadarını yatırsın otomatik olarak. Bugüne kadar olan tüm para üstü aksaklıklarının kendi hesabıma yatırılmasını talep ediyorum.", category:"Bankamatik"};
-
+  getBanka(id): void{
+    this.bankalarService.getById(id).pipe().subscribe((data: Bankalar) => {
+      this.banka = data;
+      console.log(this.banka)
+      console.log(typeof(id))
+      this.sikayet.bankaId = this.banka.ad;
+    });
   }
 
-  getBank(bankid){
-    //Banka bilgileri cekilecek ve bank objesine atanacak. bankid banka id'sini temsil ediyor.Bu degere göre cekebilirsin.
-    this.bank =  { bankId: bankid, bankName: 'A Bank', bankTotalComp: 1200, bankSolvedComp: 1000, happyRate: 98 };
+  getCevaplar(compid){
+    
   }
 
-  getAnswers(compid){
-    //sikayetin id degerine göre verilen cevaplar cekilecek. compid degerine sahip cevapları cekebilirsin.
-    this.answers=[
-      {compId:compid, bankName:"A Bank", message:"Değerli Müşterimiz, sikayetvar.com sitesine ilettiğiniz mesajınız Bankamıza ulaşmış olup, en kısa sürede tarafınıza bilgi verilecektir. Saygılarımızla,",date:new  Date ("2020,05,18")},
-      {compId:compid, bankName:"A Bank", message:"Değerli Müşterimiz, sikayetvar.com sitesine ilettiğiniz mesajınız Bankamıza ulaşmış olup, en kısa sürede tarafınıza bilgi verilecektir. Saygılarımızla,",date:new  Date ("2020,05,25")},
-    ]
+  getKullanici(id): void{
+    this.kullanicilarService.getById(id).pipe().subscribe((data: Kullanicilar) => {
+      this.kullanici = data;
+      console.log(this.kullanici)
+      this.sikayet.kullanici = this.kullanici.adSoyad;
+    });
   }
 
+  getSikayet(id): void{
+    this.sikayetlerService.getById(id).pipe().subscribe((data: Sikayetler) => {
+      this.sikayet = data;
+      this.getBanka(this.sikayet.bankaId);
+      this.getKullanici(this.sikayet.kullanici);
+    });
+  }
 
-  Comment(){
+  yorumYap(){
     //Yorum yap yazısına tıklanıldığında yapılacaklar.
   }
+  
 }

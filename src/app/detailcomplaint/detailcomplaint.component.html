@@ -9,31 +9,31 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <h6>{{complaint.title}}</h6>
+                            <h6>{{sikayet.sikayetBasligi}}</h6>
                         </div>
                         <div class="col-auto">
-                            <h6>{{bank.bankName}}</h6>
+                            <h6>{{sikayet.bankaId}}</h6>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <h6>{{complaint.customerName}}</h6>
+                            <h6>{{sikayet.kullanici}}</h6>
                         </div>
                         <div class="col-auto">
-                            <h6>{{complaint.date | date:'fullDate'}}</h6>
+                            <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <label style="text-align: start">{{complaint.detCompText}}</label>
+                            <label style="text-align: start">{{sikayet.sikayetIcerigi}}</label>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <h6>Kategori: {{complaint.category}}</h6>
+                            <h6>Kategori: {{sikayet.sikayetKategorisi}}</h6>
                         </div>
                         <div class="col-auto">
                             <button class="btn button-comment" (click)="Comment()">
@@ -45,13 +45,15 @@
                 </div>
             </div>
         </div>
+
         <!-- Sikayet Cevapları -->
+
         <div class="card border-info detail-card">
             <div class="card-body">
                 <div class="container">
                     <h6 class="card-title text-center">CEVAPLAR</h6>
+                    <!--
                     <div class="row" *ngFor="let answer of answers">
-
                         <div class="col-auto mr-auto">
                             <h6>{{answer.bankName}}</h6>
                         </div>
@@ -62,37 +64,45 @@
                         <div class="col-auto mr-auto">
                             <label style="text-align: start">{{answer.message}}</label>
                         </div>
-
                         <hr>
-
-                    </div>
+                    </div> 
+                    -->
                 </div>
             </div>
         </div>
     </div>
 
+ 
     <!-- Sikayet Bankası -->
+    
     <div class="col-3">
         <div class="card border-info detail-card">
             <div class="card-body">
-                <h5 class="card-title text-center">{{bank.bankName}} İstatistikleri</h5>
+                <h5 class="card-title text-center">{{this.banka.ad}} İstatistikleri</h5>
 
                 <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                Toplam Şikayet Sayısı: {{bank.bankTotalComp}}
+                Toplam Şikayet Sayısı: {{this.banka.mevcutSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                Çözülen Şikayet Sayısı: {{bank.bankSolvedComp}}
+                Çözülen Şikayet Sayısı: {{this.banka.cozulenSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-                Memnuniyet Oranı: %{{bank.happyRate}}
+                <div *ngIf="banka.mevcutSikayet != 0 ; else elseBlock">
+                    Memnuniyet Oranı: %{{(this.banka.cozulenSikayet)/(this.banka.mevcutSikayet)}}
+                </div>
                 <br>
 
             </div>
         </div>
     </div>
+   
 </div>
+
+<ng-template #elseBlock>
+    Memnuniyet Oranı: %{{0}}
+</ng-template>
 
 <div class="footer">
     <app-footercustom></app-footercustom>
