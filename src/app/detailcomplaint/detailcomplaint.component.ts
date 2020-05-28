@@ -50,6 +50,7 @@ export class DetailcomplaintComponent implements OnInit {
     this.bankalarService.getById(id).pipe().subscribe((data: Bankalar) => {
       this.banka = data;
       this.sikayet.bankaId = this.banka.ad;
+      //console.log(this.banka.ad)
     });
   }
 
@@ -72,7 +73,6 @@ export class DetailcomplaintComponent implements OnInit {
             calisanCevap.bankaCalisanlariId = bankaCalisani.adSoyad;
           }
         });
-       
       }
       else {
         this.allCalisanCevaplariList.splice(this.allCalisanCevaplariList.indexOf(calisanCevap), 1);
@@ -84,6 +84,7 @@ export class DetailcomplaintComponent implements OnInit {
   getKategori(id): void {
     this.kategorilerService.getById(id).pipe().subscribe((data: Kategoriler) => {
       this.kategori = data;
+      //console.log(this.kategori)
     });
   }
 
@@ -107,19 +108,19 @@ export class DetailcomplaintComponent implements OnInit {
           this.allKullaniciCevaplariList.splice(this.allKullaniciCevaplariList.indexOf(kullaniciCevap), 1);
         }
       });
-      //console.log(this.allKullaniciCevaplariList);
+      console.log(this.allKullaniciCevaplariList);
     });
   }
 
   getSikayet(id): void {
     this.sikayetlerService.getById(id).pipe().subscribe((data: Sikayetler) => {
       this.sikayet = data;
-      this.getBankaCalisani()
       this.getBanka(this.sikayet.bankaId);
       this.getKullanici(this.sikayet.kullanici);
+      this.getKategori(this.sikayet.sikayetKategorisi);
       this.getBankaCalisanlariCevaplari();
       this.getKullaniciCevaplari();
-      this.getKategori(this.sikayet.sikayetKategorisi);
+      this.getBankaCalisani()
     });
   }
 
