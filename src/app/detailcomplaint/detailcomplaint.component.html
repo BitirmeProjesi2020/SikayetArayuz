@@ -33,7 +33,7 @@
                     <br>
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <h6>Kategori: {{sikayet.sikayetKategorisi}}</h6>
+                            <h6>Kategori: {{kategori.kategoriAdi}}</h6>
                         </div>
                         <div class="col-auto">
                             <button class="btn button-comment" (click)="Comment()">
@@ -52,52 +52,55 @@
             <div class="card-body">
                 <div class="container">
                     <h6 class="card-title text-center">CEVAPLAR</h6>
-                    <!--
-                    <div class="row" *ngFor="let answer of answers">
-                        <div class="col-auto mr-auto">
-                            <h6>{{answer.bankName}}</h6>
-                        </div>
-                        <div class="col-auto">
-                            <h6>{{answer.date | date:'fullDate'}}</h6>
-                        </div>
 
-                        <div class="col-auto mr-auto">
-                            <label style="text-align: start">{{answer.message}}</label>
+                    <div *ngFor="let cevap of allCalisanCevaplariList">
+                        <div class="row">
+                            <div class="col-auto mr-auto">
+                                <h6>{{cevap.bankaCalisanlariId}}</h6>
+                            </div>
+                            <div class="col-auto">
+                                <h6>{{cevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto mr-auto">
+                                <label style="text-align: start">{{cevap.mesaj}}</label>
+                            </div>
                         </div>
                         <hr>
-                    </div> 
-                    -->
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
- 
+
     <!-- Sikayet Bankası -->
-    
+
     <div class="col-3">
         <div class="card border-info detail-card">
             <div class="card-body">
                 <h5 class="card-title text-center">{{this.banka.ad}} İstatistikleri</h5>
 
                 <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                Toplam Şikayet Sayısı: {{this.banka.mevcutSikayet}}
+                Toplam Şikayet Sayısı: {{banka.mevcutSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                Çözülen Şikayet Sayısı: {{this.banka.cozulenSikayet}}
+                Çözülen Şikayet Sayısı: {{banka.cozulenSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
                 <div *ngIf="banka.mevcutSikayet != 0 ; else elseBlock">
-                    Memnuniyet Oranı: %{{(this.banka.cozulenSikayet)/(this.banka.mevcutSikayet)}}
+                    Memnuniyet Oranı: %{{(banka.cozulenSikayet)/(this.banka.mevcutSikayet)}}
                 </div>
                 <br>
 
             </div>
         </div>
     </div>
-   
+
 </div>
 
 <ng-template #elseBlock>
