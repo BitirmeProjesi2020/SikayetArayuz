@@ -1,8 +1,7 @@
 export class CalisanCevaplari {
     id: number;
-    bankaCalisanlariId: string;
+    bankaCalisanlariId;
     sikayetlerId: number;
     mesaj: string;
     cevapTarihi: string;
   }
-  
