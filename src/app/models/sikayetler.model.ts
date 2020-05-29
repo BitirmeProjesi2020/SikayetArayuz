@@ -4,7 +4,7 @@ export class Sikayetler {
   sikayetBasligi: string;
   sikayetTelefonNo: string;
   sikayetIcerigi: string;
-  sikayetKategorisi: number;
+  sikayetKategorisi;
   sikayetTarihi: number;
   solved: boolean;
   showName: boolean;

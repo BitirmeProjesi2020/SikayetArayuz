@@ -21,4 +21,8 @@ export class KullaniciCevaplariService extends BaseService {
   getById(id: number) {
     return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getById?id=' + id, {withCredentials: true});
   }
+
+  getRecentSikayet(sikayetid: number) {
+    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getRecentSikayet?sikayetid=' + sikayetid, {withCredentials: true});
+  }
 }

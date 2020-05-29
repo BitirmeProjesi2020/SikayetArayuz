@@ -33,7 +33,7 @@
                     <br>
                     <div class="row">
                         <div class="col-auto mr-auto">
-                            <h6>Kategori: {{kategori.kategoriAdi}}</h6>
+                            <h6>Kategori: {{sikayet.sikayetKategorisi}}</h6>
                         </div>
                         <div class="col-auto">
                             <button class="btn button-comment" (click)="comment()">
@@ -53,22 +53,40 @@
                 <div class="container">
                     <h6 class="card-title text-center">CEVAPLAR</h6>
 
-                    <div *ngFor="let cevap of allCalisanCevaplariList">
+                    <div *ngFor="let bankaCevap of allCalisanCevaplariList">
                         <div class="row">
                             <div class="col-auto mr-auto">
-                                <h6>{{cevap.bankaCalisanlariId}}</h6>
+                                <h6>{{bankaCevap.bankaCalisanlariId}}</h6>
                             </div>
                             <div class="col-auto">
-                                <h6>{{cevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+                                <h6>{{bankaCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-auto mr-auto">
-                                <label style="text-align: start">{{cevap.mesaj}}</label>
+                                <label style="text-align: start">{{bankaCevap.mesaj}}</label>
                             </div>
                         </div>
                         <hr>
                     </div>
+
+                  <div *ngFor="let kullaniciCevap of allKullaniciCevaplariList">
+                    <div class="row">
+                      <div class="col-auto mr-auto">
+                        <h6>{{kullaniciCevap.kullanici}}</h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6>{{kullaniciCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-auto mr-auto">
+                        <label style="text-align: start">{{kullaniciCevap.mesaj}}</label>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+
                 </div>
             </div>
         </div>

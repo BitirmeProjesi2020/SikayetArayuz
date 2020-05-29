@@ -22,12 +22,12 @@ import {BankaCalisanlariService} from '../services/bankaCalisanlari.service';
 })
 export class DetailcomplaintComponent implements OnInit {
 
+  recentSikayetId: number;
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
   banka: Bankalar;
   bankaCalisanlari: BankaCalisanlari[];
   sikayet: Sikayetler;
-  kategori: Kategoriler;
   kullanici: Kullanicilar;
 
   constructor(private route: ActivatedRoute,
@@ -42,15 +42,14 @@ export class DetailcomplaintComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params.compId;
-    this.getSikayet(id);
+    this.recentSikayetId = this.route.snapshot.params.compId;
+    this.getSikayet(this.recentSikayetId);
   }
 
   getBanka(id): void {
     this.bankalarService.getById(id).pipe().subscribe((data: Bankalar) => {
       this.banka = data;
-      this.sikayet.bankaId = this.banka.ad;
-      //console.log(this.banka.ad)
+      this.sikayet.bankaId = data.ad;
     });
   }
 
@@ -68,17 +67,27 @@ export class DetailcomplaintComponent implements OnInit {
   }
 
   getBankaCalisanlariCevaplari() {
-    this.calisanCevaplariService.getAll().pipe().subscribe((data: CalisanCevaplari[]) => {
+    this.calisanCevaplariService.getRecentSikayet(this.recentSikayetId).pipe().subscribe((data: CalisanCevaplari[]) => {
       this.allCalisanCevaplariList = data;
       this.getBankaCalisani();
     });
-    //console.log(this.allCalisanCevaplariList);
   }
 
   getKategori(id): void {
     this.kategorilerService.getById(id).pipe().subscribe((data: Kategoriler) => {
-      this.kategori = data;
-      //console.log(this.kategori)
+      this.sikayet.sikayetKategorisi = data.kategoriAdi;
+    });
+  }
+
+  getKullaniciList(): void {
+    this.kullanicilarService.getAll().pipe().subscribe((data: Kullanicilar[]) => {
+      data.forEach(kullanici => {
+        this.allKullaniciCevaplariList.forEach(kullaniciCevap => {
+          if (kullanici.id === kullaniciCevap.kullanici) {
+            kullaniciCevap.kullanici = kullanici.adSoyad;
+          }
+        });
+      });
     });
   }
 
@@ -90,16 +99,9 @@ export class DetailcomplaintComponent implements OnInit {
   }
 
   getKullaniciCevaplari() {
-    this.kullaniciCevaplariService.getAll().pipe().subscribe((data: KullaniciCevaplari[]) => {
+    this.kullaniciCevaplariService.getRecentSikayet(this.recentSikayetId).pipe().subscribe((data: KullaniciCevaplari[]) => {
       this.allKullaniciCevaplariList = data;
-      this.allKullaniciCevaplariList.forEach(kullaniciCevap => {
-        //console.log(kullaniciCevap.sikayetlerId)s
-        //console.log(this.sikayet.id)
-        if (kullaniciCevap.sikayetlerId === this.sikayet.id) {
-
-        }
-      });
-      console.log(this.allKullaniciCevaplariList);
+      this.getKullaniciList();
     });
   }
 
@@ -113,9 +115,4 @@ export class DetailcomplaintComponent implements OnInit {
       this.getKullaniciCevaplari();
     });
   }
-
-  yorumYap() {
-    //Yorum yap yazısına tıklanıldığında yapılacaklar.
-  }
-
 }

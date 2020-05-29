@@ -1,8 +1,7 @@
 export class KullaniciCevaplari {
     id: number;
-    kullanici: string;
+    kullanici;
     sikayetlerId: number;
     mesaj: string;
     cevapTarihi: string;
   }
-  
