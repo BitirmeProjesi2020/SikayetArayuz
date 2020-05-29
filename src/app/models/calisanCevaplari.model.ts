@@ -3,5 +3,5 @@ export class CalisanCevaplari {
     bankaCalisanlariId;
     sikayetlerId: number;
     mesaj: string;
-    cevapTarihi: string;
+    cevapTarihi: number;
   }

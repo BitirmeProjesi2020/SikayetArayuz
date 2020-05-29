@@ -3,5 +3,5 @@ export class KullaniciCevaplari {
     kullanici;
     sikayetlerId: number;
     mesaj: string;
-    cevapTarihi: string;
+    cevapTarihi: number;
   }

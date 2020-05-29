@@ -28,6 +28,7 @@ export class DetailcomplaintComponent implements OnInit {
   bankaCalisanlari: BankaCalisanlari[];
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
+  sikayetTarihList = [];
 
   constructor(private route: ActivatedRoute,
               private sikayetlerService: SikayetlerService,
@@ -43,6 +44,10 @@ export class DetailcomplaintComponent implements OnInit {
   ngOnInit(): void {
     this.recentSikayetId = this.route.snapshot.params.compId;
     this.getSikayet(this.recentSikayetId);
+  }
+
+  addAllCevap(tarih: number) {
+    this.sikayetTarihList.push(tarih);
   }
 
   getBanka(id): void {
@@ -68,7 +73,15 @@ export class DetailcomplaintComponent implements OnInit {
     this.calisanCevaplariService.getRecentSikayet(this.recentSikayetId).pipe().subscribe((data: CalisanCevaplari[]) => {
       this.allCalisanCevaplariList = data;
       this.getBankaCalisani();
+
+      this.allCalisanCevaplariList.forEach(calisanCevabi => {
+        this.addAllCevap(calisanCevabi.cevapTarihi);
+      });
     });
+  }
+
+  getCevapList(): number[] {
+    return this.sikayetTarihList.sort();
   }
 
   getKategori(id): void {
@@ -100,6 +113,10 @@ export class DetailcomplaintComponent implements OnInit {
     this.kullaniciCevaplariService.getRecentSikayet(this.recentSikayetId).pipe().subscribe((data: KullaniciCevaplari[]) => {
       this.allKullaniciCevaplariList = data;
       this.getKullaniciList();
+
+      this.allKullaniciCevaplariList.forEach(kullaniciCevabi => {
+        this.addAllCevap(kullaniciCevabi.cevapTarihi);
+      });
     });
   }
 
