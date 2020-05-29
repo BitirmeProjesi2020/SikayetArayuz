@@ -21,4 +21,6 @@
 
 .body-fix {
   padding-bottom: 175px;
+  min-height: 700px;
+  height: 100%;
 }

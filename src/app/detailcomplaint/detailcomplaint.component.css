@@ -1,7 +1,6 @@
 .position-mid {
   margin: auto;
   width: 80%;
-  height: 100%;
   padding-top: 30px;
   padding-bottom: 30px;
 }
@@ -32,8 +31,4 @@ hr {
   margin-right: auto;
   border-style: inset;
   border-width: 1px;
-}
-
-.body-fix {
-  padding-bottom: 175px;
 }
