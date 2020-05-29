@@ -12,7 +12,7 @@
                             <h6>{{sikayet.sikayetBasligi}}</h6>
                         </div>
                         <div class="col-auto">
-                            <h6>{{sikayet.bankaId}}</h6>
+                            <h6>{{sikayet.bankaId.ad}}</h6>
                         </div>
                     </div>
                     <br>
@@ -97,19 +97,19 @@
     <div class="col-3">
         <div class="card border-info detail-card">
             <div class="card-body">
-                <h5 class="card-title text-center">{{banka.ad}} İstatistikleri</h5>
+                <h5 class="card-title text-center">{{sikayet.bankaId.ad}} İstatistikleri</h5>
 
                 <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                Toplam Şikayet Sayısı: {{banka.mevcutSikayet}}
+                Toplam Şikayet Sayısı: {{sikayet.bankaId.mevcutSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                Çözülen Şikayet Sayısı: {{banka.cozulenSikayet}}
+                Çözülen Şikayet Sayısı: {{sikayet.bankaId.cozulenSikayet}}
                 <br>
 
                 <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-                <div *ngIf="banka.mevcutSikayet != 0 ; else elseBlock">
-                    Memnuniyet Oranı: %{{(banka.cozulenSikayet)/(this.banka.mevcutSikayet)}}
+                <div *ngIf="sikayet.bankaId.mevcutSikayet != 0 ; else elseBlock">
+                    Memnuniyet Oranı: %{{(sikayet.bankaId.cozulenSikayet)/(this.sikayet.bankaId.mevcutSikayet)}}
                 </div>
                 <br>
 

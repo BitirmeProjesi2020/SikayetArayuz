@@ -25,7 +25,6 @@ export class DetailcomplaintComponent implements OnInit {
   recentSikayetId: number;
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
-  banka: Bankalar;
   bankaCalisanlari: BankaCalisanlari[];
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
@@ -48,8 +47,7 @@ export class DetailcomplaintComponent implements OnInit {
 
   getBanka(id): void {
     this.bankalarService.getById(id).pipe().subscribe((data: Bankalar) => {
-      this.banka = data;
-      this.sikayet.bankaId = data.ad;
+      this.sikayet.bankaId = data;
     });
   }
 
