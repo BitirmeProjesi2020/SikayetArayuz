@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { CookieService } from 'ngx-cookie-service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -49,8 +50,8 @@ import { DetailcomplaintComponent } from './detailcomplaint/detailcomplaint.comp
 import { EntercomplaintComponent } from './entercomplaint/entercomplaint.component';
 import { ListbanksComponent } from './listbanks/listbanks.component';
 import { SignupcustomerComponent } from './signupcustomer/signupcustomer.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -88,8 +89,9 @@ import {FormsModule} from '@angular/forms';
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+    useClass: HashLocationStrategy,
+  },
+    CookieService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@ export class SignupcustomerComponent implements OnInit {
   username: string;
 
   constructor(private kullanicilarService: KullanicilarService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +34,7 @@ export class SignupcustomerComponent implements OnInit {
 
       this.kullanicilarService.add(this.kullanici).pipe().subscribe((data) => {
         this.alertText = "Kayıt işlemi başarılı.";
-        this.router.navigate(['/']);
+        this.router.navigate(['']);
       });
     }
   }
