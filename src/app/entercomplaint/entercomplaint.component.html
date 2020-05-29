@@ -1,36 +1,36 @@
 <app-navbarcustom></app-navbarcustom>
 
 <div class="container center_div body-fix" style="width:50%">
-    <form>
-        <div class="form-group">
-            <select class="form-control ">
-                <option>Şikayet edeceğiniz bankayı giriniz.</option>
-                <option *ngFor="let bank of this.bankalarList">{{bank.ad}}</option>
-            </select>
-        </div>
+  <form>
+    <div class="form-group">
+      <select class="form-control ">
+        <option>Şikayet edeceğiniz bankayı giriniz.</option>
+        <option *ngFor="let bank of this.bankalarList">{{bank.ad}}</option>
+      </select>
+    </div>
 
-        <div class="form-group">
-            <input class="form-control " placeholder="Şikayetinizi özetleyen başlık yazınız." [(ngModel)]="baslik" name="baslik">
-            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-        </div>
-        <div class="form-group">
-            <input class="form-control " type="tel"
-                placeholder="Banka sisteminde kayıtlı cep telefonunuzu 5xxxxxxxxx formatında giriniz. "
-                pattern="[0-9]{10}"
-                title="Telefon numarası 5xxxxxxxxx bu düzene uymalıdır." [(ngModel)]="telNo" name="telNo">
-        </div>
+    <div class="form-group">
+      <input class="form-control " placeholder="Şikayetinizi özetleyen başlık yazınız." [(ngModel)]="baslik"
+             name="baslik">
+      <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+    </div>
+    <div class="form-group">
+      <input class="form-control " type="tel"
+             placeholder="Banka sisteminde kayıtlı cep telefonunuzu 5xxxxxxxxx formatında giriniz. "
+             pattern="[0-9]{10}"
+             title="Telefon numarası 5xxxxxxxxx bu düzene uymalıdır." [(ngModel)]="telNo" name="telNo">
+    </div>
 
-        <div class="form-group">
+    <div class="form-group">
             <textarea class="form-control " style="height:200px;"
-                      placeholder="Şikayetinizi detaylı bir şekilde yazınız." [(ngModel)]="detay" name="sikayetDetay"></textarea>
-        </div>
+                      placeholder="Şikayetinizi detaylı bir şekilde yazınız." [(ngModel)]="detay"
+                      name="sikayetDetay"></textarea>
+    </div>
 
-        <div class="form-group text-right">
-            <button class="btn btn-send" (click)="sendComp()">Gönder</button>
-        </div>
-    </form>
+    <div class="form-group text-right">
+      <button class="btn btn-send" (click)="sendComp()">Gönder</button>
+    </div>
+  </form>
 </div>
 
-<div class="footer">
-    <app-footercustom></app-footercustom>
-</div>
+<app-footercustom></app-footercustom>

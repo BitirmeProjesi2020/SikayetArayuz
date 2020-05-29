@@ -13,25 +13,30 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Ad soyad giriniz" autocomplete="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" required>
+                  <input type="text" class="form-control" placeholder="Ad soyad giriniz" autocomplete="username"
+                         [(ngModel)]="username" [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Email adresinizi giriniz" autocomplete="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required>
+                  <input type="text" class="form-control" placeholder="Email adresinizi giriniz" autocomplete="email"
+                         [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Şifre giriniz" autocomplete="new-password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required>
+                  <input type="password" class="form-control" placeholder="Şifre giriniz" autocomplete="new-password"
+                         [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Şifre onaylayınız" autocomplete="new-password" [(ngModel)]="passwordTkr" [ngModelOptions]="{standalone: true}" required>
+                  <input type="password" class="form-control" placeholder="Şifre onaylayınız"
+                         autocomplete="new-password" [(ngModel)]="passwordTkr" [ngModelOptions]="{standalone: true}"
+                         required>
                 </div>
                 <button type="button" class="btn btn-block btn-signup" (click)="signUpBtn()">Kayıt Ol</button>
                 <div>
@@ -45,7 +50,6 @@
     </div>
   </main>
 </div>
-  
-<div class="footer">
-  <app-footercustom></app-footercustom>
-</div>
+
+
+<app-footercustom></app-footercustom>

@@ -1,32 +1,24 @@
-.center-div{
-    margin: 0 auto;
-    width:100% ;
-    padding-top: 40px;
-    padding-bottom: 20px;
+.center-div {
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
-.card-signup{
-    border-color: white;
+.card-signup {
+  border-color: white;
 }
 
-.btn-signup{
-    background-color: #333333;
-    width: 100%;
-    color: white;
+.btn-signup {
+  background-color: #333333;
+  width: 100%;
+  color: white;
 }
 
 .content {
-    min-height: calc(70vh - 75px);
+  min-height: calc(70vh - 75px);
 }
 
-.body-fix{
-    padding-bottom: 175px;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+.body-fix {
+  padding-bottom: 175px;
 }

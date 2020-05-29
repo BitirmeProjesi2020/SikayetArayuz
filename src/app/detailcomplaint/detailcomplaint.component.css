@@ -1,10 +1,10 @@
 .position-mid {
-    margin: auto;
-    width: 80%;
-    height: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
 .detail-card {
   width: 95%;
@@ -15,16 +15,16 @@
   margin: 5px;
 }
 
-.button-comment{
+.button-comment {
   background-color: white;
   border-color: white;
 }
-  
-.style1{
+
+.style1 {
   border-top: 1px solid #8c8b8b;
 }
-  
-hr { 
+
+hr {
   display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -32,16 +32,8 @@ hr {
   margin-right: auto;
   border-style: inset;
   border-width: 1px;
-} 
-
-.body-fix{
-  padding-bottom: 175px;
 }
 
-.footer {
-position: fixed;
-left: 0;
-bottom: 0;
-width: 100%;
-text-align: center;
+.body-fix {
+  padding-bottom: 175px;
 }
