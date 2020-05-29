@@ -55,8 +55,9 @@
 
           <div *ngIf="getCevapList().length > 0">
             <div *ngFor="let tarih of getCevapList()">
+
+              <!--Banka cevaplari icin-->
               <div *ngFor="let bankaCevap of allCalisanCevaplariList">
-                <!--Banka cevaplari icin-->
                 <div *ngIf="tarih === bankaCevap.cevapTarihi">
                   <div class="row">
                     <div class="col-auto mr-auto">
@@ -75,8 +76,8 @@
                 </div>
               </div>
 
+              <!-- Kullanıcı cevaplari icin-->
               <div *ngFor="let kullaniciCevap of allKullaniciCevaplariList">
-                <!-- Kullanıcı cevaplari icin-->
                 <div *ngIf="tarih === kullaniciCevap.cevapTarihi">
                   <div class="row">
                     <div class="col-auto mr-auto">
@@ -93,8 +94,7 @@
                   </div>
                   <hr>
                 </div>
-
-
+                
               </div>
             </div>
           </div>
