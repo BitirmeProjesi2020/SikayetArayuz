@@ -26,22 +26,37 @@
             </form>
           </div>
         </div>
-
-        <div class="p-2 flex-row-reverse flex-fill ">
-          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
-            <button class="btn btn-log-in" type="submit" style="float: right;" (click)="logIn()">Giriş Yap</button>
+        <div *ngIf="kullanici; else elseBlock">
+          <div class="p-2 flex-row-reverse flex-fill ">
+            <div style="margin-top: 10px">
+              <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" style="background-color: #C5E1EB;" class="btn dropdown-toggle">
+                  <i class="fa fa-user" style="font-size:32px"></i><span class="caret"></span>
+                </button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                  <li role="menuitem"><a class="dropdown-item fa fa-user" href="#"> Profilim</a></li>
+                  <li role="menuitem"><a class="dropdown-item fa fa-archive" href="#"> Şikayetlerim</a></li>
+                  <li class="divider dropdown-divider"></li>
+                  <li role="menuitem"><a class="dropdown-item fa fa-sign-out" (click)="deleteCookie()"> Çıkış Yap</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="p-2 flex-row-reverse flex-fill">
-          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
-            <button class="btn btn-sign-up" type="submit" style="float: right;" (click)="signUp()">Üye Ol</button>
+        <ng-template #elseBlock>
+          <div class="p-2 flex-row-reverse flex-fill ">
+            <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+              <button class="btn btn-log-in" type="submit" style="float: right;" (click)="logIn()">Giriş Yap</button>
+            </div>
           </div>
-        </div>
+          <div class="p-2 flex-row-reverse flex-fill">
+            <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+              <button class="btn btn-sign-up" type="submit" style="float: right;" (click)="signUp()">Üye Ol</button>
+            </div>
+          </div>
+        </ng-template>
       </div>
-
-
     </div>
-
   </div>
 </nav>
