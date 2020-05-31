@@ -33,7 +33,7 @@ export class NavbarcustomComponent implements OnInit {
     this.cookieService.delete('kullaniciAdSoyad');
     this.cookieService.delete('kullaniciEmail');
     this.cookieService.delete('kullaniciPassword');
-    this.ngOnInit();
+    this.router.navigate(['']);
   }
 
   logIn() {
