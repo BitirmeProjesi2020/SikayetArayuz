@@ -7,7 +7,11 @@
         <h4>Tüm Şikayetler</h4>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn btn-pill btn-dark" (click)="clickEnterComp()">Şikayet Yaz</button>
+        <div *ngIf="calisan; else elseBlock">
+        </div>
+        <ng-template #elseBlock>
+          <button type="button" class="btn btn-pill btn-dark" (click)="clickEnterComp()">Şikayet Yaz</button>
+        </ng-template>
       </div>
     </div>
   </div>

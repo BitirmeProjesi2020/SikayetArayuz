@@ -1,11 +1,11 @@
 <app-navbarcustom></app-navbarcustom>
 
-<div *ngIf="kullanici; else elseBlock" class="container center_div body-fix" style="width:50%">
+<div *ngIf="musteri; else elseBlock" class="container center_div body-fix" style="width:50%">
   <form>
     <div class="form-group">
       <select class="form-control ">
         <option>Şikayet edeceğiniz bankayı giriniz.</option>
-        <option *ngFor="let bank of this.bankalarList">{{bank.ad}}</option>
+        <option *ngFor="let bank of this.bankalarList" (click) = "selectedBank(bank.id)">{{bank.ad}}</option>
       </select>
     </div>
 

@@ -16,7 +16,7 @@ export class EntercomplaintComponent implements OnInit {
   bankalarList: Bankalar[];
   baslik: string;
   detay: string;
-  kullanici: boolean = false;
+  musteri: boolean = false;
   telNo: string;
 
   constructor(private bankalarService: BankalarService,
@@ -25,16 +25,18 @@ export class EntercomplaintComponent implements OnInit {
     private sikayetlerService: SikayetlerService) { }
 
   ngOnInit(): void {
-    this.controlCookie();
+    this.controlMusteri();
     this.getBankalar();
   }
 
-  controlCookie() {
-    if (this.cookieService.get('kullaniciId') === "") {
-      this.kullanici = false;
+  controlMusteri(){
+    if(this.cookieService.get('uyeTipi') === "musteri"){
+      this.musteri = true;
+      console.log("Musteri giris yapti.");
     }
-    else {
-      this.kullanici = true;
+    else{
+      this.musteri = false;
+      console.log("Musteri giris yapmadi veya calisan giris yaptı.");
     }
   }
 
@@ -46,7 +48,7 @@ export class EntercomplaintComponent implements OnInit {
   }
 
   sendComp() {
-    if (this.kullanici) {
+    if (this.musteri) {
       const sikayet = new Sikayetler(1, this.baslik, this.telNo, this.detay, 1, false, true, 1);
       this.sikayetlerService.add(sikayet).pipe().subscribe((data) => {
         console.log('Kayıt edildi');

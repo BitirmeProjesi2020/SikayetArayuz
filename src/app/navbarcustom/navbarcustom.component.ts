@@ -18,21 +18,20 @@ export class NavbarcustomComponent implements OnInit {
   }
 
   controlCookie() {
-    if(this.cookieService.get('kullaniciId') === ""){
+    if(this.cookieService.get('uyeId') === ""){
       this.kullanici = false;
-      console.log("Kullanici giriş yapmamış.");
+      console.log("Calisan veya Musteri giriş yapmamış.");
     }
     else{
       this.kullanici = true;
-      console.log("Kullanici giriş yapmıştır.");
+      console.log("Calisan veya Musteri giris yapmıştır.");
+      console.log(this.cookieService.get('uyeTipi'));
     }
   }
 
   deleteCookie(){
-    this.cookieService.delete('kullaniciId');
-    this.cookieService.delete('kullaniciAdSoyad');
-    this.cookieService.delete('kullaniciEmail');
-    this.cookieService.delete('kullaniciPassword');
+    this.cookieService.delete('uyeId');
+    this.cookieService.delete('uyeTipi');
     this.router.navigate(['']);
   }
 

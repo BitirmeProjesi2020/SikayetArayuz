@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {SikayetlerService} from '../services/sikayetler.service';
 import {Sikayetler} from '../models/sikayetler.model';
@@ -14,12 +15,14 @@ import {KullanicilarService} from '../services/kullanicilar.service';
 })
 export class ListcomplaintsComponent implements OnInit {
 
-  sikayetlerList: Sikayetler[];
   bankalarList: Bankalar[];
+  calisan: boolean;
   kullanicilarList: Kullanicilar[];
+  sikayetlerList: Sikayetler[];
 
   constructor(private router: Router,
               private bankalarService: BankalarService,
+              private cookieService: CookieService,
               private sikayetlerService: SikayetlerService,
               private kullanicilarService: KullanicilarService) {
   }
@@ -27,10 +30,22 @@ export class ListcomplaintsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSikayetler();
+    this.controlCalisan();
   }
 
   clickEnterComp() {
     this.router.navigate(['/yeni-sikayet']);
+  }
+
+  controlCalisan(){
+    if(this.cookieService.get('uyeTipi') === "calisan"){
+      this.calisan = true;
+      console.log("Calisan giris yapti.");
+    }
+    else{
+      this.calisan = false;
+      console.log("Kullanici giris yapmadi veya musteri giris yapti.");
+    }
   }
 
   getBankalar() {
