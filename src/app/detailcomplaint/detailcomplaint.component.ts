@@ -147,19 +147,20 @@ export class DetailcomplaintComponent implements OnInit {
   yorumYap() {
     const id = this.cookieService.get('uyeId');
     const uyeTipi = this.cookieService.get('uyeTipi');
-
-    if (uyeTipi === 'musteri') {
-      const kullaniciCevaplari = new KullaniciCevaplari(null, id, this.recentSikayetId, this.txtYorum);
-      this.kullaniciCevaplariService.add(kullaniciCevaplari).subscribe((data) => {
-        this.temizle();
-        this.ngOnInit();
-      });
-    } else if (uyeTipi === 'calisan') {
-      const calisanCevaplari = new CalisanCevaplari(null, id, this.recentSikayetId, this.txtYorum);
-      this.calisanCevaplariService.add(calisanCevaplari).pipe().subscribe((data) => {
-        this.temizle();
-        this.ngOnInit();
-      });
+    if (this.txtYorum && this.txtYorum !== '') {
+      if (uyeTipi === 'musteri') {
+        const kullaniciCevaplari = new KullaniciCevaplari(null, id, this.recentSikayetId, this.txtYorum);
+        this.kullaniciCevaplariService.add(kullaniciCevaplari).subscribe((data) => {
+          this.temizle();
+          this.ngOnInit();
+        });
+      } else if (uyeTipi === 'calisan') {
+        const calisanCevaplari = new CalisanCevaplari(null, id, this.recentSikayetId, this.txtYorum);
+        this.calisanCevaplariService.add(calisanCevaplari).pipe().subscribe((data) => {
+          this.temizle();
+          this.ngOnInit();
+        });
+      }
     }
   }
 }
