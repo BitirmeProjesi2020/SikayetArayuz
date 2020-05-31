@@ -14,6 +14,7 @@ import {KullaniciCevaplari} from '../models/kullaniciCevaplari.model';
 import {KullaniciCevaplariService} from '../services/kullaniciCevaplari.service';
 import {BankaCalisanlari} from '../models/bankaCalisanlari.model';
 import {BankaCalisanlariService} from '../services/bankaCalisanlari.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-detailcomplaint',
@@ -25,10 +26,11 @@ export class DetailcomplaintComponent implements OnInit {
   recentSikayetId: number;
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
-  bankaCalisanlari: BankaCalisanlari[];
+  bankaCalisanlariList: BankaCalisanlari[];
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
   sikayetTarihList = [];
+  txtYorum: string;
 
   constructor(private route: ActivatedRoute,
               private sikayetlerService: SikayetlerService,
@@ -37,7 +39,8 @@ export class DetailcomplaintComponent implements OnInit {
               private kategorilerService: KategorilerService,
               private calisanCevaplariService: CalisanCevaplariService,
               private kullaniciCevaplariService: KullaniciCevaplariService,
-              private bankaCalisanlariService: BankaCalisanlariService) {
+              private bankaCalisanlariService: BankaCalisanlariService,
+              private cookieService: CookieService) {
 
   }
 
@@ -58,8 +61,8 @@ export class DetailcomplaintComponent implements OnInit {
 
   getBankaCalisani() {
     this.bankaCalisanlariService.getAll().pipe().subscribe((data: BankaCalisanlari[]) => {
-      this.bankaCalisanlari = data;
-      this.bankaCalisanlari.forEach(calisan => {
+      this.bankaCalisanlariList = data;
+      this.bankaCalisanlariList.forEach(calisan => {
         this.allCalisanCevaplariList.forEach(cevap => {
           if (cevap.bankaCalisanlariId === calisan.id) {
             cevap.bankaCalisanlariId = calisan.adSoyad;
@@ -129,5 +132,34 @@ export class DetailcomplaintComponent implements OnInit {
       this.getBankaCalisanlariCevaplari();
       this.getKullaniciCevaplari();
     });
+  }
+
+  temizle() {
+    this.allCalisanCevaplariList = [];
+    this.allKullaniciCevaplariList = [];
+    this.bankaCalisanlariList = [];
+    this.sikayetTarihList = [];
+    this.sikayet = null;
+    this.kullanici = null;
+    this.txtYorum = null;
+  }
+
+  yorumYap() {
+    const id = this.cookieService.get('uyeId');
+    const uyeTipi = this.cookieService.get('uyeTipi');
+
+    if (uyeTipi === 'musteri') {
+      const kullaniciCevaplari = new KullaniciCevaplari(null, id, this.recentSikayetId, this.txtYorum);
+      this.kullaniciCevaplariService.add(kullaniciCevaplari).subscribe((data) => {
+        this.temizle();
+        this.ngOnInit();
+      });
+    } else if (uyeTipi === 'calisan') {
+      const calisanCevaplari = new CalisanCevaplari(null, id, this.recentSikayetId, this.txtYorum);
+      this.calisanCevaplariService.add(calisanCevaplari).pipe().subscribe((data) => {
+        this.temizle();
+        this.ngOnInit();
+      });
+    }
   }
 }
