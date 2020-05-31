@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class NavbarcustomComponent implements OnInit {
 
   kullanici: boolean;
-  kullaniciName: string;
   constructor(private cookieService: CookieService,
               private router: Router) { }
 
@@ -19,14 +18,12 @@ export class NavbarcustomComponent implements OnInit {
   }
 
   controlCookie() {
-    console.log (this.kullanici);
     if(this.cookieService.get('kullaniciId') === ""){
       this.kullanici = false;
       console.log("Kullanici giriş yapmamış.");
     }
     else{
       this.kullanici = true;
-      this.kullaniciName = this.cookieService.get('kullaniciAdSoyad');
       console.log("Kullanici giriş yapmıştır.");
     }
   }
