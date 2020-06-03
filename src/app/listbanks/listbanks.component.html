@@ -30,7 +30,7 @@
 
                     <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
                     <div *ngIf="bank.mevcutSikayet!=0; else elseBlock">
-                        Memnuniyet Oranı: %{{(bank.cozulenSikayet)/(bank.mevcutSikayet)}}
+                        Memnuniyet Oranı: %{{(bank.cozulenSikayet)/(bank.mevcutSikayet)*100}}
                     </div>
                     <br>
 
