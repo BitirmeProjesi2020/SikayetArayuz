@@ -7,18 +7,18 @@
             <img src="/assets/img/brand/logo.svg" width="120" height="40" alt="" loading="lazy">
           </a>
         </div>
-        <div class="p-2">
-          <a class="nav-link text" href="#/sikayetler">Şikayetler</a>
+        <div class="p-2" >
+          <a class="nav-link text menu-text" href="#/sikayetler">Şikayetler</a>
         </div>
         <div class="p-2">
-          <a class="nav-link text" href="#/bankalar">Bankalar</a>
+          <a class="nav-link text menu-text" href="#/bankalar">Bankalar</a>
         </div>
       </div>
     </div>
-    <div class="p-3 ">
+    <div class="p-3">
       <div class="d-flex">
         <div class="p-2 mr-auto flex-fill">
-          <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
+          <div class="nav navbar-nav d-md-down-none" style="margin-top: 7px">
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Banka veya şikayet ara..."
                 aria-label="Search" style="width: 200px;">
@@ -28,10 +28,10 @@
         </div>
         <div *ngIf="kullanici; else elseBlock">
           <div class="p-2 flex-row-reverse flex-fill ">
-            <div style="margin-top: 10px">
+            <div>
               <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" style="background-color: #C5E1EB;" class="btn dropdown-toggle">
-                  <i class="fa fa-user" style="font-size:32px"></i><span class="caret"></span>
+                <button dropdownToggle type="button" class="btn dropdown-toggle btn-profile">
+                  <i class="fa fa-user user_icon"></i><strong> {{this.kullaniciName}}</strong>
                 </button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                   <li role="menuitem"><a class="dropdown-item fa fa-user" href="#"> Profilim</a></li>
@@ -46,13 +46,13 @@
         </div>
         <ng-template #elseBlock>
           <div class="p-2 flex-row-reverse flex-fill ">
-            <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
-              <button class="btn btn-log-in" type="submit" style="float: right;" (click)="logIn()">Giriş Yap</button>
+            <div class="nav navbar-nav d-md-down-none">
+              <button class="btn btn-log-in btn_black" type="submit" (click)="logIn()">Giriş Yap</button>
             </div>
           </div>
           <div class="p-2 flex-row-reverse flex-fill">
-            <div class="nav navbar-nav d-md-down-none" style="margin-top: 15px">
-              <button class="btn btn-sign-up" type="submit" style="float: right;" (click)="signUp()">Üye Ol</button>
+            <div class="nav navbar-nav d-md-down-none">
+              <button class="btn btn-sign-up btn_black" type="submit" (click)="signUp()">Üye Ol</button>
             </div>
           </div>
         </ng-template>

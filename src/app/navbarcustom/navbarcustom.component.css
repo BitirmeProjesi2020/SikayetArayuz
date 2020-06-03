@@ -12,3 +12,22 @@
   width: 100%;
   color: white;
 }
+
+.btn-profile{
+  background-color: #C5E1EB;
+  margin-top: 1px
+}
+
+.menu-text{
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.user_icon{
+  font-size:32px;
+}
+
+.btn_black{
+  float: right;
+  margin-top: 6px
+}
