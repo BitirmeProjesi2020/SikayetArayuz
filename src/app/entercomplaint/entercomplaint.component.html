@@ -1,11 +1,11 @@
 <app-navbarcustom></app-navbarcustom>
 
-<div *ngIf="musteri; else elseBlock" class="container center_div body-fix" style="width:50%">
+<div *ngIf="musteri; else elseBlockMusteri" class="container center_div body-fix" style="width:50%">
   <form>
     <div class="form-group">
-      <select class="form-control">
+      <select class="form-control" (change)="filterBank($event.target.value)">
         <option>Şikayet edeceğiniz bankayı giriniz.</option>
-        <option *ngFor="let bank of this.bankalarList" [value]="bank.id">{{bank.ad}}</option>
+        <option *ngFor="let bank of this.bankalarList" value="{{bank.id}}">{{bank.ad}}</option>
       </select>
     </div>
 
@@ -28,9 +28,9 @@
     <div class="form-group">
       <div class="row">
         <div class="col-4">
-          <select class="form-control ">
+          <select class="form-control" (change)="filterKategori($event.target.value)">
             <option>Şikayet kategorisini seçiniz.</option>
-            <option *ngFor="let kategori of this.kategorilerList">{{kategori.kategoriAdi}}</option>
+            <option *ngFor="let kategori of this.kategorilerList" value="{{kategori.id}}">{{kategori.kategoriAdi}}</option>
           </select>
         </div>
         <div class="col-3">
@@ -45,10 +45,13 @@
     <div class="form-group text-right">
       <button class="btn btn-send" (click)="sendComp()">Gönder</button>
     </div>
+    <div>
+     {{errorMsg}}
+    </div>
   </form>
 </div>
 
-<ng-template #elseBlock>
+<ng-template #elseBlockMusteri>
   <div class="container center_div body-fix" style="width:50%">
     Şikayet paylaşmak için giriş yapmalısınız. Eğer bir hesabınız yoksa ücretsiz üye olabilirsiniz.
   </div>
