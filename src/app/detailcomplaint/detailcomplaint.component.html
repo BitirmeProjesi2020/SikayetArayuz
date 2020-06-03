@@ -1,6 +1,5 @@
 <app-navbarcustom></app-navbarcustom>
 
-
 <div class="d-flex justify-content-between position-mid body-fix">
   <div class="col-9">
     <!-- Sikayet Detaylı -->
@@ -34,11 +33,6 @@
           <div class="row">
             <div class="col-auto mr-auto">
               <h6>Kategori: {{sikayet.sikayetKategorisi}}</h6>
-            </div>
-            <div class="col-auto">
-              <button class="btn button-comment" (click)="comment()">
-                <h6>YORUM YAP</h6>
-              </button>
             </div>
           </div>
 
@@ -103,7 +97,6 @@
       </div>
     </div>
 
-
     <div class="card border-info detail-card" style="padding: 25px">
       <div class="form-group">
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" [(ngModel)]="txtYorum"></textarea>
@@ -130,21 +123,18 @@
         Çözülen Şikayet Sayısı: {{sikayet.bankaId.cozulenSikayet}}
         <br>
 
-        <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-        <div *ngIf="sikayet.bankaId.mevcutSikayet != 0 ; else elseBlock">
-          Memnuniyet Oranı: %{{(sikayet.bankaId.cozulenSikayet) / (this.sikayet.bankaId.mevcutSikayet)}}
+        <div *ngIf="sikayet.bankaId.mevcutSikayet!=0">
+          <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+          <label>Memnuniyet Oranı: %{{(sikayet.bankaId.cozulenSikayet) / (sikayet.bankaId.mevcutSikayet) * 100}}</label>
+        </div>
+        <div *ngIf="sikayet.bankaId.mevcutSikayet===0">
+          <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+          <label>Memnuniyet Oranı: %0</label>
         </div>
         <br>
-
       </div>
     </div>
   </div>
-
 </div>
-
-<ng-template #elseBlock>
-  Memnuniyet Oranı: %{{0}}
-</ng-template>
-
 
 <app-footercustom></app-footercustom>

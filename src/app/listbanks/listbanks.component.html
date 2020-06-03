@@ -1,48 +1,45 @@
 <app-navbarcustom></app-navbarcustom>
 
 <div class="nav-bank">
-    <div class="container">
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <h4>Bankalar</h4>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <h4>Bankalar</h4>
+      </div>
     </div>
+  </div>
 </div>
 
 
 <div class="container body-fix">
-    <br>
-    <div class="row card-group ">
-        <div class="col-4" *ngFor="let bank of this.bankalarList">
-            <div class="card bank-card border-info">
-                <div class="card-body">
+  <br>
+  <div class="row card-group ">
+    <div class="col-4" *ngFor="let bank of this.bankalarList">
+      <div class="card bank-card border-info">
+        <div class="card-body">
 
-                    <h5 class="card-title text-center">{{bank.ad}} İstatistikleri</h5>
+          <h5 class="card-title text-center">{{bank.ad}} İstatistikleri</h5>
 
-                    <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-                    Toplam Şikayet Sayısı: {{bank.mevcutSikayet}}
-                    <br>
+          <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
+          Toplam Şikayet Sayısı: {{bank.mevcutSikayet}}
+          <br>
 
-                    <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-                    Çözülen Şikayet Sayısı: {{bank.cozulenSikayet}}
-                    <br>
-
-                    <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-                    <div *ngIf="bank.mevcutSikayet!=0; else elseBlock">
-                        Memnuniyet Oranı: %{{(bank.cozulenSikayet)/(bank.mevcutSikayet)*100}}
-                    </div>
-                    <br>
-
-                </div>
-            </div>
+          <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
+          Çözülen Şikayet Sayısı: {{bank.cozulenSikayet}}
+          <br>
+          <div *ngIf="bank.mevcutSikayet!=0">
+            <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+            <label>Memnuniyet Oranı: %{{(bank.cozulenSikayet) / (bank.mevcutSikayet) * 100}}</label>
+          </div>
+          <div *ngIf="bank.mevcutSikayet===0">
+            <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+            <label>Memnuniyet Oranı: %0</label>
+          </div>
+          <br>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
-<ng-template #elseBlock>
-    Memnuniyet Oranı: %{{0}}
-</ng-template>
-
 
 <app-footercustom></app-footercustom>
