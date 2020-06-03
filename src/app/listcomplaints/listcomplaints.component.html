@@ -43,7 +43,7 @@
   <div class="col-10" style="height: 700px">
     <div style="overflow-y: scroll; height:100%; text-align: center">
       <div *ngFor="let sikayet of this.sikayetlerList">
-        <button class="complaints-short" (click)="showDetailComp(sikayet.id)">
+        <button *ngIf="sikayet.solved === false" class="complaints-short" (click)="showDetailComp(sikayet.id)">
           <div class="container">
             <div class="row">
               <div class="col-auto mr-auto">
