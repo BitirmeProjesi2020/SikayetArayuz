@@ -56,7 +56,6 @@ export class LogincustomerComponent implements OnInit {
           this.cookieService.set('uyeId', kullanici.id.toString());
           this.cookieService.set('uyeTipi', 'musteri');
           this.flag = true;
-          this.alertMsg('Giriş işlemi başarılı.');
           this.router.navigate(['']);
         }
       });
@@ -65,7 +64,6 @@ export class LogincustomerComponent implements OnInit {
           this.cookieService.set('uyeId', calisan.id.toString());
           this.cookieService.set('uyeTipi', 'calisan');
           this.flag = true;
-          this.alertMsg('Giriş işlemi başarılı.');
           this.router.navigate(['']);
         }
       });

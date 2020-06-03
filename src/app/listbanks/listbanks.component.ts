@@ -13,7 +13,6 @@ export class ListbanksComponent implements OnInit {
 
   constructor(private bankalarService: BankalarService) { }
 
-
   ngOnInit(): void {
     this.getBankalar();
   }
@@ -21,7 +20,6 @@ export class ListbanksComponent implements OnInit {
   getBankalar(): void {
     this.bankalarService.getAll().pipe().subscribe((data: Bankalar[]) => {
       this.bankalarList = data;
-      console.log(this.bankalarList);
     });
   }
   

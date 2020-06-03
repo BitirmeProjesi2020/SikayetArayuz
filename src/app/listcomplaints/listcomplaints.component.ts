@@ -40,11 +40,9 @@ export class ListcomplaintsComponent implements OnInit {
   controlCalisan(){
     if(this.cookieService.get('uyeTipi') === "calisan"){
       this.calisan = true;
-      console.log("Calisan giris yapti.");
     }
     else{
       this.calisan = false;
-      console.log("Kullanici giris yapmadi veya musteri giris yapti.");
     }
   }
 
