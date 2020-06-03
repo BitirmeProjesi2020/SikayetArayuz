@@ -20,6 +20,10 @@ export class BankalarService extends BaseService {
   }
 
   getById(id: number) {
-    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getById?id=' + id, {withCredentials: true});
+    return this.getHttp().get<Bankalar>(this.getBaseUrl() + this.getEntityName() + '/getById?id=' + id, {withCredentials: true});
+  }
+
+  update(bankalar: Bankalar) {
+    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/update', bankalar);
   }
 }

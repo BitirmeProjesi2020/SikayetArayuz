@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Bankalar } from '../models/bankalar.model';
-import { BankalarService } from '../services/bankalar.service';
-import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-import { Sikayetler } from '../models/sikayetler.model';
-import { SikayetlerService } from '../services/sikayetler.service';
-import { KategorilerService } from '../services/kategoriler.service';
-import { Kategoriler } from '../models/kategoriler.model';
-import { Deeplearning } from '../models/deeplearning.model';
-import { DeeplearningService } from '../services/deeplearning.service';
+import {Component, OnInit} from '@angular/core';
+import {Bankalar} from '../models/bankalar.model';
+import {BankalarService} from '../services/bankalar.service';
+import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
+import {Sikayetler} from '../models/sikayetler.model';
+import {SikayetlerService} from '../services/sikayetler.service';
+import {KategorilerService} from '../services/kategoriler.service';
+import {Kategoriler} from '../models/kategoriler.model';
+import {Deeplearning} from '../models/deeplearning.model';
+import {DeeplearningService} from '../services/deeplearning.service';
 
 @Component({
   selector: 'app-entercomplaint',
@@ -26,7 +26,7 @@ export class EntercomplaintComponent implements OnInit {
   deeplearning: Deeplearning;
   selectedBankId: any;
   selectedKategoriId: any;
-  errorMsg = "";
+  errorMsg = '';
 
   constructor(private bankalarService: BankalarService,
               private cookieService: CookieService,
@@ -59,7 +59,7 @@ export class EntercomplaintComponent implements OnInit {
   filterKategori(filterVal: any) {
     this.selectedKategoriId = filterVal;
     console.log(this.selectedKategoriId);
-    console.log(typeof (this.selectedKategoriId))
+    console.log(typeof (this.selectedKategoriId));
   }
 
   getBankalar(): void {
@@ -83,14 +83,24 @@ export class EntercomplaintComponent implements OnInit {
 
   sendComp() {
     const id = Number(this.cookieService.get('uyeId'));
-    if ((this.baslik != undefined && this.baslik != "") && (this.telNo != undefined && this.telNo != "" && this.telNo.length === 10) && (this.detay != undefined && this.detay != "") && (this.selectedBankId != "Şikayet edeceğiniz bankayı giriniz." && this.selectedBankId != "0") && (this.selectedKategoriId != "Şikayet kategorisini seçiniz." && this.selectedKategoriId != "0")) {
+    if ((this.baslik != undefined && this.baslik != '') && (this.telNo != undefined && this.telNo != '' && this.telNo.length === 10) && (this.detay != undefined && this.detay != '') && (this.selectedBankId != 'Şikayet edeceğiniz bankayı giriniz.' && this.selectedBankId != '0') && (this.selectedKategoriId != 'Şikayet kategorisini seçiniz.' && this.selectedKategoriId != '0')) {
       const sikayet = new Sikayetler(Number(this.selectedBankId), this.baslik, this.telNo, this.detay, Number(this.selectedKategoriId), false, true, id);
       this.sikayetlerService.add(sikayet).pipe().subscribe((data) => {
+        this.updateBank();
         this.router.navigate(['/sikayetler']);
       });
     } else {
-      this.errorMsg = "Şikayetinizi paylaşmak için yukarıdaki alanların tamamını uygun bir şekilde doldurmalısınız."
+      this.errorMsg = 'Şikayetinizi paylaşmak için yukarıdaki alanların tamamını uygun bir şekilde doldurmalısınız.';
       this.ngOnInit();
     }
+  }
+
+  updateBank() {
+    this.bankalarService.getById(Number(this.selectedBankId)).pipe().subscribe((data) => {
+      const tempBank = data;
+      tempBank.mevcutSikayet = data.mevcutSikayet + 1;
+      this.bankalarService.update(tempBank).pipe().subscribe((update) => {
+      });
+    });
   }
 }
