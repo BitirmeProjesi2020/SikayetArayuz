@@ -109,8 +109,8 @@
   </div>
 
   <div class="col-3">
-    <!-- Sikayet Bankası -->
-    <div class="card border-info detail-card">
+    <!-- Sikayet Bankası veya Musteri -->
+    <div *ngIf="bankaBox; else musteriBlock" class="card border-info detail-card">
       <div class="card-body">
         <h5 class="card-title text-center">{{sikayet.bankaId.ad}} İstatistikleri</h5>
 
@@ -133,6 +133,16 @@
         <br>
       </div>
     </div>
+    <ng-template #musteriBlock>
+      <div class="card border-info detail-card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Müşteri Bilgileri</h5>
+          Ad-Soyad: {{kullanici.adSoyad}}<br>
+          E-mail Adresi: {{kullanici.email}}<br>
+          Telefon Numarası: {{sikayet.sikayetTelefonNo}}
+        </div>
+      </div>
+    </ng-template>
     <!-- Müsteri Seçenek -->
     <div *ngIf="radioBox"  class="card border-info detail-card" style="padding: 20px; text-align: left">
       <div class="form-group">

@@ -27,6 +27,7 @@ export class DetailcomplaintComponent implements OnInit {
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
   bankaCalisanlariList: BankaCalisanlari[];
+  bankaBox: boolean = true;
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
   sikayetTarihList = [];
@@ -56,6 +57,19 @@ export class DetailcomplaintComponent implements OnInit {
 
   addAllCevap(tarih: number) {
     this.sikayetTarihList.push(tarih);
+  }
+
+  controlBankaCalisani(sikayetBankId:number){
+    const id = Number(this.cookieService.get('uyeId'));
+    const uyeTipi = this.cookieService.get('uyeTipi');
+    if(uyeTipi === 'calisan'){
+      this.bankaCalisanlariService.getById(id).pipe().subscribe((calisan) => {
+        const onlineBankaCalisani: any = calisan;
+        if(onlineBankaCalisani.calistigiBanka === sikayetBankId){
+          this.bankaBox = false;
+        }
+      });
+    }
   }
 
   controlRadioBox(kullaniciId) {
@@ -144,6 +158,7 @@ export class DetailcomplaintComponent implements OnInit {
       this.sikayet = data;
       this.getBanka(this.sikayet.bankaId);
       this.getKullanici(this.sikayet.kullanici);
+      this.controlBankaCalisani(Number(this.sikayet.bankaId));
       this.getKategori(this.sikayet.sikayetKategorisi);
       this.getBankaCalisanlariCevaplari();
       this.getKullaniciCevaplari();
