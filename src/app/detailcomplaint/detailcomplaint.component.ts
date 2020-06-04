@@ -27,12 +27,14 @@ export class DetailcomplaintComponent implements OnInit {
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
   bankaCalisanlariList: BankaCalisanlari[];
-  cozulduBox: boolean = false;
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
   sikayetTarihList = [];
   txtYorum: string;
   sikayetCozuldu: boolean;
+  sikayetSil: boolean;
+  radioBox: boolean = false;
+  
 
 
   constructor(private route: ActivatedRoute,
@@ -57,14 +59,14 @@ export class DetailcomplaintComponent implements OnInit {
     this.sikayetTarihList.push(tarih);
   }
 
-  controlCozulduBox(kullaniciId){
+  controlRadioBox(kullaniciId){
     const id = Number(this.cookieService.get('uyeId'));
     const uyeTipi = this.cookieService.get('uyeTipi');
     if(uyeTipi === 'musteri' && id === kullaniciId && this.sikayet.solved === false){
-      this.cozulduBox = true;
+      this.radioBox = true;
     }
     else{
-      this.cozulduBox = false;
+      this.radioBox = false;
     }
   }
 
@@ -124,7 +126,7 @@ export class DetailcomplaintComponent implements OnInit {
     this.kullanicilarService.getById(id).pipe().subscribe((data: Kullanicilar) => {
       this.kullanici = data;
       this.sikayet.kullanici = this.kullanici.adSoyad;
-      this.controlCozulduBox(this.kullanici.id);
+      this.controlRadioBox(this.kullanici.id);
     });
   }
 
@@ -168,6 +170,10 @@ export class DetailcomplaintComponent implements OnInit {
         });
       });
     }
+    else{
+      //Şikayeti silme işlemi
+      console.log("şikayeti sil seçildi.");
+    }
   }
 
   temizle() {
@@ -200,7 +206,14 @@ export class DetailcomplaintComponent implements OnInit {
     }
   }
 
-  filterCozuldu($event) {
-    this.sikayetCozuldu = $event.target.checked;
+  filterControl($event) {
+    if($event.target.value === "cozuldu"){
+      this.sikayetCozuldu = $event.target.checked;
+      this.sikayetSil = false;
+    }
+    else{
+      this.sikayetSil = $event.target.checked;
+      this.sikayetCozuldu = false;
+    }
   }
 }
