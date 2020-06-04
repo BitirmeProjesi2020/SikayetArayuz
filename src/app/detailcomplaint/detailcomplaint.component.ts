@@ -166,29 +166,33 @@ export class DetailcomplaintComponent implements OnInit {
   }
 
   kaydetCozuldu() {
-    if (this.rbSikayet === true) {
-      // geçerli id'deki sikayet getirliyor
-      this.sikayetlerService.getById(this.recentSikayetId).pipe().subscribe((sikayet) => {
-
+    // geçerli id'deki sikayet getirliyor
+    this.sikayetlerService.getById(this.recentSikayetId).pipe().subscribe((sikayet) => {
+      if (this.rbSikayet === true) {
         const tempSikayet: Sikayetler = new Sikayetler(sikayet.id, sikayet.bankaId, sikayet.sikayetBasligi, sikayet.sikayetTelefonNo, sikayet.sikayetIcerigi, sikayet.sikayetKategorisi, null, true, sikayet.showName, sikayet.kullanici);
 
-        // Parametre  sikayetler tablosunda veri güncelleniyor.
         this.sikayetlerService.update(tempSikayet).pipe().subscribe((data) => {
 
           const bank: Bankalar = this.sikayet.bankaId;
           bank.cozulenSikayet = this.sikayet.bankaId.cozulenSikayet + 1;
-
-          // Bankalar tablosu da güncelleniyor
           this.bankalarService.update(bank).pipe().subscribe((value) => {
             this.router.navigate(['/sikayetler']);
           });
+
         });
-      });
-    } else {
-      this.sikayetlerService.delete(this.recentSikayetId).pipe().subscribe((data) => {
-        this.router.navigate(['/sikayetler']);
-      });
-    }
+      } else {
+        this.sikayetlerService.delete(this.recentSikayetId).pipe().subscribe((data) => {
+
+          const bank: Bankalar = this.sikayet.bankaId;
+          bank.mevcutSikayet = this.sikayet.bankaId.mevcutSikayet - 1;
+          this.bankalarService.update(bank).pipe().subscribe((value) => {
+            this.router.navigate(['/sikayetler']);
+          });
+
+          this.router.navigate(['/sikayetler']);
+        });
+      }
+    });
   }
 
   temizle() {
