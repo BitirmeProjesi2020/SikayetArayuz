@@ -27,6 +27,7 @@ export class DetailcomplaintComponent implements OnInit {
   allCalisanCevaplariList: CalisanCevaplari[];
   allKullaniciCevaplariList: KullaniciCevaplari[];
   bankaCalisanlariList: BankaCalisanlari[];
+  cozulduBox: boolean = false;
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
   sikayetTarihList = [];
@@ -54,6 +55,17 @@ export class DetailcomplaintComponent implements OnInit {
 
   addAllCevap(tarih: number) {
     this.sikayetTarihList.push(tarih);
+  }
+
+  controlCozulduBox(kullaniciId){
+    const id = Number(this.cookieService.get('uyeId'));
+    const uyeTipi = this.cookieService.get('uyeTipi');
+    if(uyeTipi === 'musteri' && id === kullaniciId && this.sikayet.solved === false){
+      this.cozulduBox = true;
+    }
+    else{
+      this.cozulduBox = false;
+    }
   }
 
   getBanka(id): void {
@@ -112,6 +124,7 @@ export class DetailcomplaintComponent implements OnInit {
     this.kullanicilarService.getById(id).pipe().subscribe((data: Kullanicilar) => {
       this.kullanici = data;
       this.sikayet.kullanici = this.kullanici.adSoyad;
+      this.controlCozulduBox(this.kullanici.id);
     });
   }
 
