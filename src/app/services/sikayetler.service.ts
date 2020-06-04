@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BaseService} from './base.service';
 import {Sikayetler} from '../models/sikayetler.model';
-import {stringify} from 'querystring';
 
 @Injectable({
   providedIn: 'root'

@@ -20,7 +20,7 @@
               <h6>{{sikayet.kullanici}}</h6>
             </div>
             <div class="col-auto">
-              <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+              <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
                       <h6>{{bankaCevap.bankaCalisanlariId}}</h6>
                     </div>
                     <div class="col-auto">
-                      <h6>{{bankaCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+                      <h6>{{bankaCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
                     </div>
                   </div>
                   <div class="row">
@@ -78,7 +78,7 @@
                       <h6>{{kullaniciCevap.kullanici}}</h6>
                     </div>
                     <div class="col-auto">
-                      <h6>{{kullaniciCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</h6>
+                      <h6>{{kullaniciCevap.cevapTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
                     </div>
                   </div>
                   <div class="row">
@@ -144,10 +144,11 @@
       </div>
     </ng-template>
     <!-- Müsteri Seçenek -->
-    <div *ngIf="radioBox"  class="card border-info detail-card" style="padding: 20px; text-align: left">
+    <div *ngIf="radioBox" class="card border-info detail-card" style="padding: 20px; text-align: left">
       <div class="form-group">
         <div class="form-check">
-          <input type="radio" value="cozuldu" name="selection" (change)="filterControl($event)" ngModel>  Şikayetim Çözüldü
+          <input type="radio" value="cozuldu" name="selection" (change)="filterControl($event)" ngModel> Şikayetim
+          Çözüldü
           <br>
           <input type="radio" value="sil" name="selection" (change)="filterControl($event)" ngModel> Şikayetimi Sil
         </div>

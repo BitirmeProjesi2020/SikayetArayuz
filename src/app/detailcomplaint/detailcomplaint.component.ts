@@ -59,13 +59,13 @@ export class DetailcomplaintComponent implements OnInit {
     this.sikayetTarihList.push(tarih);
   }
 
-  controlBankaCalisani(sikayetBankId:number){
+  controlBankaCalisani(sikayetBankId: number) {
     const id = Number(this.cookieService.get('uyeId'));
     const uyeTipi = this.cookieService.get('uyeTipi');
-    if(uyeTipi === 'calisan'){
+    if (uyeTipi === 'calisan') {
       this.bankaCalisanlariService.getById(id).pipe().subscribe((calisan) => {
         const onlineBankaCalisani: any = calisan;
-        if(onlineBankaCalisani.calistigiBanka === sikayetBankId){
+        if (onlineBankaCalisani.calistigiBanka === sikayetBankId) {
           this.bankaBox = false;
         }
       });
@@ -169,13 +169,15 @@ export class DetailcomplaintComponent implements OnInit {
     if (this.rbSikayet === true) {
       // geçerli id'deki sikayet getirliyor
       this.sikayetlerService.getById(this.recentSikayetId).pipe().subscribe((sikayet) => {
-        // sikayet parametresi güncelleniyor
-        sikayet.solved = this.rbSikayet;
-        sikayet.sikayetTarihi = null;
+
+        const tempSikayet: Sikayetler = new Sikayetler(sikayet.id, sikayet.bankaId, sikayet.sikayetBasligi, sikayet.sikayetTelefonNo, sikayet.sikayetIcerigi, sikayet.sikayetKategorisi, null, true, sikayet.showName, sikayet.kullanici);
+
         // Parametre  sikayetler tablosunda veri güncelleniyor.
-        this.sikayetlerService.update(sikayet).pipe().subscribe((data) => {
+        this.sikayetlerService.update(tempSikayet).pipe().subscribe((data) => {
+
           const bank: Bankalar = this.sikayet.bankaId;
           bank.cozulenSikayet = this.sikayet.bankaId.cozulenSikayet + 1;
+
           // Bankalar tablosu da güncelleniyor
           this.bankalarService.update(bank).pipe().subscribe((value) => {
             this.router.navigate(['/sikayetler']);
