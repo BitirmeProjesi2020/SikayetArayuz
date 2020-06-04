@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BaseService} from './base.service';
 import {Sikayetler} from '../models/sikayetler.model';
+import {stringify} from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SikayetlerService extends BaseService {
   }
 
   delete(id: number) {
-    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/delete' + id, {withCredentials: true});
+    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/delete?id=' + id);
   }
 
   getAll() {
