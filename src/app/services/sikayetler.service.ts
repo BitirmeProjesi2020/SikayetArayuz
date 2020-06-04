@@ -15,7 +15,7 @@ export class SikayetlerService extends BaseService {
   }
 
   delete(id: number) {
-    return this.getHttp().get<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/delete?id=' + id, {withCredentials: true});
+    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/delete' + id, {withCredentials: true});
   }
 
   getAll() {
