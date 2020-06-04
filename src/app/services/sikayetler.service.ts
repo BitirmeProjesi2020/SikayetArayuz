@@ -19,7 +19,7 @@ export class SikayetlerService extends BaseService {
   }
 
   getAll() {
-    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getAll', {withCredentials: true});
+    return this.getHttp().get<Sikayetler[]>(this.getBaseUrl() + this.getEntityName() + '/getAll', {withCredentials: true});
   }
 
   getById(id: number) {

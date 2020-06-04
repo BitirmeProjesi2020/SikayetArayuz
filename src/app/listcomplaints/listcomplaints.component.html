@@ -22,21 +22,14 @@
     <div style="margin-top: 15px">
       <label>Bankalar</label>
       <select class="custom-select" multiple>
-        <option value="1">A Bankası (214)</option>
-        <option value="2">B Bankası (168)</option>
-        <option value="3">C Bankası (183)</option>
+        <!-- <option value="0"> </option>-->
+        <option *ngFor="let bank of this.bankalarList" value="{{bank.id}}">{{bank.ad}} ({{bank.mevcutSikayet}})</option>
       </select>
       <label>Kategori</label>
       <select class="custom-select" multiple>
-        <option value="1">Müşteri hizmetleri (63)</option>
-        <option value="2">Kredi Kartı (22)</option>
-        <option value="3">Hesap (28)</option>
-      </select>
-      <label>Şikayet Tarihi</label>
-      <select class="custom-select" multiple>
-        <option value="1">2020 (43)</option>
-        <option value="2">2019 (54)</option>
-        <option value="3">2018 (30)</option>
+        <!--<option value="0"> </option>-->
+        <option *ngFor="let kategori of this.kategorilerList" value="{{kategori.id}}">{{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
+        </option>
       </select>
     </div>
   </div>
