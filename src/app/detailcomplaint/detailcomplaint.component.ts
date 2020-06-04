@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SikayetlerService} from '../services/sikayetler.service';
 import {Sikayetler} from '../models/sikayetler.model';
 import {BankalarService} from '../services/bankalar.service';
@@ -31,6 +31,8 @@ export class DetailcomplaintComponent implements OnInit {
   kullanici: Kullanicilar;
   sikayetTarihList = [];
   txtYorum: string;
+  sikayetCozuldu: boolean;
+
 
   constructor(private route: ActivatedRoute,
               private sikayetlerService: SikayetlerService,
@@ -40,7 +42,8 @@ export class DetailcomplaintComponent implements OnInit {
               private calisanCevaplariService: CalisanCevaplariService,
               private kullaniciCevaplariService: KullaniciCevaplariService,
               private bankaCalisanlariService: BankaCalisanlariService,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private router: Router) {
 
   }
 
@@ -134,6 +137,26 @@ export class DetailcomplaintComponent implements OnInit {
     });
   }
 
+  kaydetCozuldu() {
+    if (this.sikayetCozuldu === true) {
+      // geçerli id'deki sikayet getirliyor
+      this.sikayetlerService.getById(this.recentSikayetId).pipe().subscribe((sikayet) => {
+        // sikayet parametresi güncelleniyor
+        sikayet.solved = this.sikayetCozuldu;
+        sikayet.sikayetTarihi = null;
+        // Parametre  sikayetler tablosunda veri güncelleniyor.
+        this.sikayetlerService.update(sikayet).pipe().subscribe((data) => {
+          const bank: Bankalar = this.sikayet.bankaId;
+          bank.cozulenSikayet = this.sikayet.bankaId.cozulenSikayet + 1;
+          // Bankalar tablosu da güncelleniyor
+          this.bankalarService.update(bank).pipe().subscribe((value) => {
+            this.router.navigate(['/sikayetler']);
+          });
+        });
+      });
+    }
+  }
+
   temizle() {
     this.allCalisanCevaplariList = [];
     this.allKullaniciCevaplariList = [];
@@ -162,5 +185,9 @@ export class DetailcomplaintComponent implements OnInit {
         });
       }
     }
+  }
+
+  filterCozuldu($event) {
+    this.sikayetCozuldu = $event.target.checked;
   }
 }

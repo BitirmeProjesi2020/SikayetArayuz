@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BaseService} from './base.service';
 import {Bankalar} from '../models/bankalar.model';
-import {Sikayetler} from '../models/sikayetler.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class BankalarService extends BaseService {
   }
 
   add(bankalar: Bankalar) {
-    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/add', bankalar);
+    return this.getHttp().post<Bankalar>(this.getBaseUrl() + this.getEntityName() + '/add', bankalar);
   }
 
   getAll() {
@@ -24,6 +23,6 @@ export class BankalarService extends BaseService {
   }
 
   update(bankalar: Bankalar) {
-    return this.getHttp().post<Sikayetler>(this.getBaseUrl() + this.getEntityName() + '/update', bankalar);
+    return this.getHttp().post<Bankalar>(this.getBaseUrl() + this.getEntityName() + '/update', bankalar);
   }
 }
