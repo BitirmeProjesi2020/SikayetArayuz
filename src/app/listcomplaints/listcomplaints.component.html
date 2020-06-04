@@ -36,7 +36,7 @@
   <div class="col-10" style="height: 700px">
     <div style="overflow-y: scroll; height:100%; text-align: center">
       <div *ngFor="let sikayet of this.sikayetlerList">
-        <button *ngIf="sikayet.solved === false" class="complaints-short" (click)="showDetailComp(sikayet.id)">
+        <button *ngIf="sikayet.solved === false; else solvedBlock" class="complaints-short" (click)="showDetailComp(sikayet.id)">
           <div class="container">
             <div class="row">
               <div class="col-auto mr-auto">
@@ -61,6 +61,41 @@
             </div>
           </div>
         </button>
+        <ng-template #solvedBlock>
+          <button class="complaints-short" (click)="showDetailComp(sikayet.id)">
+            <div class="container">
+              <div class="row">
+                <div class="col-auto mr-auto solved">
+                  <strong>ÇÖZÜLDÜ</strong>
+                </div>
+                <div class="col-auto solved">
+                  <i class="fa fa-smile-o fa-2x"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto mr-auto">
+                  <h6>{{sikayet.sikayetBasligi}}</h6>
+                </div>
+                <div class="col-auto">
+                  <h6>{{sikayet.bankaId}}</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto mr-auto">
+                  <h6>{{sikayet.kullanici}}</h6>
+                </div>
+                <div class="col-auto">
+                  <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto mr-auto">
+                  <label style="text-align: start">{{sikayet.sikayetIcerigi}}</label>
+                </div>
+              </div>
+            </div>
+          </button>
+        </ng-template>
       </div>
     </div>
   </div>
