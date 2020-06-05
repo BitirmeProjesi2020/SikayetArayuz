@@ -32,3 +32,7 @@ hr {
   border-style: inset;
   border-width: 1px;
 }
+
+.solved{
+  color: #20A8D8;
+}

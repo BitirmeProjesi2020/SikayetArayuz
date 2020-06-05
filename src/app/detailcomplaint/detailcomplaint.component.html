@@ -6,6 +6,14 @@
     <div class="card border-info detail-card">
       <div class="card-body">
         <div class="container">
+          <div *ngIf="sikayet.solved === true;" class="row">
+            <div class="col-auto mr-auto solved">
+              <strong>ÇÖZÜLDÜ</strong>
+            </div>
+            <div class="col-auto solved">
+              <i class="fa fa-smile-o fa-2x"></i>
+            </div>
+          </div>
           <div class="row">
             <div class="col-auto mr-auto">
               <h6>{{sikayet.sikayetBasligi}}</h6>
@@ -137,9 +145,9 @@
       <div class="card border-info detail-card">
         <div class="card-body">
           <h5 class="card-title text-center">Müşteri Bilgileri</h5>
-          Ad-Soyad: {{kullanici.adSoyad}}<br>
-          E-mail Adresi: {{kullanici.email}}<br>
-          Telefon Numarası: {{sikayet.sikayetTelefonNo}}
+          <strong>Ad-Soyad: </strong>{{kullanici.adSoyad}}<br>
+          <strong>E-mail Adresi: </strong>{{kullanici.email}}<br>
+          <strong>Telefon Numarası: </strong>{{sikayet.sikayetTelefonNo}}
         </div>
       </div>
     </ng-template>
