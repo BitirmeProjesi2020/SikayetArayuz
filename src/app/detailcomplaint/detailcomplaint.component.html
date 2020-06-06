@@ -6,7 +6,7 @@
     <div class="card border-info detail-card">
       <div class="card-body">
         <div class="container">
-          <div *ngIf="sikayet.solved === true;" class="row">
+          <div *ngIf="sikayet && sikayet.solved && sikayet.solved === true;" class="row">
             <div class="col-auto mr-auto solved">
               <strong>ÇÖZÜLDÜ</strong>
             </div>

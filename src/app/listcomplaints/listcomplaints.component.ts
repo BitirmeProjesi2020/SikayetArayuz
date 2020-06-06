@@ -76,7 +76,6 @@ export class ListcomplaintsComponent implements OnInit {
       }
       this.getSikayetler();
     }
-    console.log(this.selectedBankalar);
   }
 
   filterKategori($event) {
@@ -103,7 +102,6 @@ export class ListcomplaintsComponent implements OnInit {
       }
       this.getSikayetler();
     }
-    console.log(this.selectedKategori);
   }
 
   getBankalar() {
@@ -156,8 +154,6 @@ export class ListcomplaintsComponent implements OnInit {
   }
 
   getSikayetler(): void {
-    console.log(this.selectedBankalar);
-    console.log(this.selectedKategori);
     this.sikayetlerList = [];
     this.sikayetlerService.getAll().pipe().subscribe((data: Sikayetler[]) => {
       const tempSikayetler: Sikayetler[] = [];
