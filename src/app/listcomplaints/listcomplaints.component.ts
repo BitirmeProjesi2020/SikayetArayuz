@@ -19,14 +19,12 @@ export class ListcomplaintsComponent implements OnInit {
 
   bankalarList: Bankalar[];
   calisan: boolean;
-  kullanicilarList: Kullanicilar[];
-  sikayetlerList: Sikayetler[];
-  kategorilerList: Kategoriler[];
-  selectedBankalar: boolean[] = new Array();
-  selectedKategoriler: boolean[] = new Array();
-  eslesenBanka: Sikayetler[] = new Array();
-  eslesenKategori: Sikayetler[] = new Array();
-  eslesenSikayetler: Sikayetler[] = new Array();
+  kullanicilarList: Kullanicilar[] = [];
+  sikayetlerList: Sikayetler[] = [];
+  kategorilerList: Kategoriler[] = [];
+
+  selectedBankalar: Bankalar[] = [];
+  selectedKategori: Kategoriler[] = [];
 
   constructor(private router: Router,
               private cookieService: CookieService,
@@ -38,9 +36,8 @@ export class ListcomplaintsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getSikayetler();
-    this.controlCalisan();
     this.getKategoriler();
+    this.controlCalisan();
   }
 
   clickEnterComp() {
@@ -55,101 +52,84 @@ export class ListcomplaintsComponent implements OnInit {
     }
   }
 
-  filterBank(id){
-    this.eslesenBanka.length = 0;
-    this.eslesenKategori.length = 0;
-    this.eslesenSikayetler.length = 0;
-    id = id - 1;
-    if(this.selectedBankalar[id] === false || this.selectedBankalar[id] === undefined){
-      this.selectedBankalar[id] = true;
+  filterBank($event) {
+    if (this.bankalarList === this.selectedBankalar) {
+      this.selectedBankalar = [];
     }
-    else{
-      this.selectedBankalar[id] = false;
+    if ($event.target.checked === true) {
+      let flag = true;
+      this.selectedBankalar.forEach(bank => {
+        if (bank.id === Number($event.target.value)) {
+          flag = false;
+        }
+      });
+      if (flag === true) {
+        this.bankalarService.getById($event.target.value).pipe().subscribe((data) => {
+          this.selectedBankalar[this.selectedBankalar.length] = data;
+          this.getSikayetler();
+        });
+      }
+    } else if ($event.target.checked === false) {
+      this.removeBank(Number($event.target.value));
+      if (this.selectedBankalar.length === 0) {
+        this.selectedBankalar = this.bankalarList;
+      }
+      this.getSikayetler();
     }
-    console.log('secilen bankalar: ', this.selectedBankalar);
-    console.log('secilen kategoriler: ', this.selectedKategoriler);
-    this.getEslesen();
+    console.log(this.selectedBankalar);
   }
 
-  filterKategori(id){
-    this.eslesenKategori.length = 0; 
-    id = id - 1;
-    if(this.selectedKategoriler[id] === false || this.selectedKategoriler[id] === undefined){
-      this.selectedKategoriler[id] = true;
+  filterKategori($event) {
+    if (this.kategorilerList === this.selectedKategori) {
+      this.selectedKategori = [];
     }
-    else{
-      this.selectedKategoriler[id] = false;
-    }
-    console.log('secilen bankalar: ', this.selectedBankalar);
-    console.log('secilen kategoriler: ', this.selectedKategoriler);
-    this.getEslesen();
-  }
-
-  getEslesen(){
-    for(let i=0; i< this.sikayetlerList.length ; i++){
-      for(let j=0; j< this.selectedBankalar.length ; j++){
-        if(this.selectedBankalar[j]===true && this.bankalarList[j].ad === this.sikayetlerList[i].bankaId){
-          this.eslesenBanka.push(this.sikayetlerList[i]);
+    if ($event.target.checked === true) {
+      let flag = true;
+      this.selectedKategori.forEach(kategori => {
+        if (kategori.id === Number($event.target.value)) {
+          flag = false;
         }
+      });
+      if (flag === true) {
+        this.kategorilerService.getById($event.target.value).pipe().subscribe((data) => {
+          this.selectedKategori[this.selectedKategori.length] = data;
+          this.getSikayetler();
+        });
       }
-    }
-    for(let i=0; i< this.sikayetlerList.length ; i++){
-      for(let j=0; j< this.selectedKategoriler.length ; j++){
-        if(this.selectedKategoriler[j]===true && this.kategorilerList[j].id === this.sikayetlerList[i].sikayetKategorisi){
-          this.eslesenKategori.push(this.sikayetlerList[i]);
-        }
+    } else if ($event.target.checked === false) {
+      this.removeKategori(Number($event.target.value));
+      if (this.selectedKategori.length === 0) {
+        this.selectedKategori = this.kategorilerList;
       }
+      this.getSikayetler();
     }
-    console.log('eslesen bankalar: ',this.eslesenBanka);
-    console.log('eslesen kategoriler: ',this.eslesenKategori);
-    this.getEslesenSikayetler();
-  }
-
-  getEslesenSikayetler(){
-    console.log('Eslesen Sikayetler:')
-    this.eslesenSikayetler.length = 0;
-    console.log('eslesenBankaLength: ', this.eslesenBanka.length);
-    console.log('eslesenKategoriLength: ', this.eslesenKategori.length);
-    if(this.eslesenBanka.length === 0 && this.eslesenKategori.length != 0){
-      this.eslesenSikayetler = this.eslesenKategori;
-      console.log('banka bos: ',this.eslesenSikayetler);
-      return;
-    }
-    if(this.eslesenKategori.length === 0 && this.eslesenBanka.length != 0){
-      this.eslesenSikayetler = this.eslesenBanka;
-      console.log('kategori bos: ',this.eslesenSikayetler);
-      return;
-    }
-    if(this.eslesenBanka.length != 0 && this.eslesenKategori.length != 0){
-      console.log('banka-kategori join: ');
-      for(let i=0; i< this.eslesenBanka.length ; i++){
-        for(let j=0; j< this.eslesenKategori.length ; j++){
-          if(this.eslesenBanka[i].id === this.eslesenKategori[j].id){
-            this.eslesenSikayetler.push(this.eslesenKategori[i]);
-          }
-        }
-      }
-    }
-    
+    console.log(this.selectedKategori);
   }
 
   getBankalar() {
     this.bankalarService.getAll().pipe().subscribe((data: Bankalar[]) => {
       this.bankalarList = data;
-      this.bankalarList.forEach(banka => {
-        this.sikayetlerList.forEach(sikayet => {
-          if (banka.id === sikayet.bankaId) {
-            sikayet.bankaId = banka.ad;
-          }
-        });
-      });
+      this.selectedBankalar = data;
+      this.getSikayetler();
     });
   }
 
   getKategoriler(): void {
     this.kategorilerService.getAll().pipe().subscribe((data: Kategoriler[]) => {
       this.kategorilerList = data;
+      this.selectedKategori = data;
+      this.getBankalar();
     });
+  }
+
+  getBankSikayetNo(adi: string): number {
+    let sayi = 0;
+    this.sikayetlerList.forEach(value => {
+      if (value.bankaId === adi) {
+        sayi++;
+      }
+    });
+    return sayi;
   }
 
   getKategoriSikayetNo(id: number): number {
@@ -176,11 +156,54 @@ export class ListcomplaintsComponent implements OnInit {
   }
 
   getSikayetler(): void {
+    console.log(this.selectedBankalar);
+    console.log(this.selectedKategori);
+    this.sikayetlerList = [];
     this.sikayetlerService.getAll().pipe().subscribe((data: Sikayetler[]) => {
-      this.sikayetlerList = data;
-      this.getBankalar();
+      const tempSikayetler: Sikayetler[] = [];
+      data.forEach(sikayet => {
+        this.selectedKategori.forEach(kategori => {
+          this.selectedBankalar.forEach(banka => {
+            if (sikayet.bankaId === banka.id && sikayet.sikayetKategorisi === kategori.id) {
+              let flag = true;
+              tempSikayetler.forEach(value => {
+                if (value === sikayet) {
+                  flag = false;
+                }
+              });
+              if (flag === true) {
+                tempSikayetler.push(sikayet);
+              }
+            }
+          });
+        });
+      });
+      this.sikayetlerList = tempSikayetler;
       this.getKullanicilar();
+      this.bankalarList.forEach(banka => {
+        this.sikayetlerList.forEach(sikayet => {
+          if (banka.id === sikayet.bankaId) {
+            sikayet.bankaId = banka.ad;
+          }
+        });
+      });
     });
+  }
+
+  removeBank(id: number): void {
+    for (let i = 0; i < this.selectedBankalar.length; i++) {
+      if (this.selectedBankalar[i].id === id) {
+        this.selectedBankalar.splice(i, 1);
+      }
+    }
+  }
+
+  removeKategori(id: number) {
+    for (let i = 0; i < this.selectedKategori.length; i++) {
+      if (this.selectedKategori[i].id === id) {
+        this.selectedKategori.splice(i, 1);
+      }
+    }
   }
 
   showDetailComp(compId: number) {

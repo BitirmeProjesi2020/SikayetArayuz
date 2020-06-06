@@ -29,7 +29,7 @@
       <div class="card detail-card">
         <div class="form-group"  style="overflow-y: scroll; height:80px;">
           <div class="form-check" *ngFor="let bank of this.bankalarList" >
-            <input type="checkbox" value="{{bank.id}}" (change)="filterBank($event.target.value)" ngModel> {{bank.ad}} ({{bank.mevcutSikayet}})
+            <input type="checkbox" value="{{bank.id}}" (change)="filterBank($event)" ngModel> {{bank.ad}} ({{getBankSikayetNo(bank.ad)}})
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="card detail-card">
         <div class="form-group"  style="overflow-y: scroll; height:80px;">
           <div class="form-check" *ngFor="let kategori of this.kategorilerList" >
-            <input type="checkbox" value="{{kategori.id}}" (change)="filterKategori($event.target.value)" ngModel> {{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
+            <input type="checkbox" value="{{kategori.id}}" (change)="filterKategori($event)" ngModel> {{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
           </div>
         </div>
       </div>

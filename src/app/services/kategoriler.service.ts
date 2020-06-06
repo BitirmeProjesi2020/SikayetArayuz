@@ -15,10 +15,10 @@ export class KategorilerService extends BaseService {
   }
 
   getAll() {
-    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getAll', {withCredentials: true});
+    return this.getHttp().get<Kategoriler[]>(this.getBaseUrl() + this.getEntityName() + '/getAll', {withCredentials: true});
   }
 
   getById(id: number) {
-    return this.getHttp().get(this.getBaseUrl() + this.getEntityName() + '/getById?id=' + id, {withCredentials: true});
+    return this.getHttp().get<Kategoriler>(this.getBaseUrl() + this.getEntityName() + '/getById?id=' + id, {withCredentials: true});
   }
 }
