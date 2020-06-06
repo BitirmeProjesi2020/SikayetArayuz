@@ -52,14 +52,10 @@ export class EntercomplaintComponent implements OnInit {
 
   filterBank(filterVal: any) {
     this.selectedBankId = filterVal;
-    console.log(this.selectedBankId);
-    console.log(typeof (this.selectedBankId));
   }
 
   filterKategori(filterVal: any) {
     this.selectedKategoriId = filterVal;
-    console.log(this.selectedKategoriId);
-    console.log(typeof (this.selectedKategoriId));
   }
 
   getBankalar(): void {

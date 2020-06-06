@@ -44,7 +44,6 @@ export class LogincustomerComponent implements OnInit {
   getKullanicilar() {
     this.kullanicilarService.getAll().pipe().subscribe((data: Kullanicilar[]) => {
       this.kullanicilarList = data;
-      console.log(this.kullanicilarList);
     });
   }
 
