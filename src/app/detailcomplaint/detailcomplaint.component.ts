@@ -31,7 +31,7 @@ export class DetailcomplaintComponent implements OnInit {
   sikayet: Sikayetler;
   kullanici: Kullanicilar;
   sikayetTarihList = [];
-  txtYorum: string;
+  txtYorum: string = '';
   rbSikayet: boolean;
   sikayetSil: boolean;
   radioBox: boolean = false;
