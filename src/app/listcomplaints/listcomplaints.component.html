@@ -21,30 +21,20 @@
   <div class="col-2">
     <div style="margin-top: 15px">
       <label>Bankalar</label>
-       <!-- <select class="custom-select" (change)="filterBank($event.target.value)" multiple>
-       <option value="0"> </option>
-        <option *ngFor="let bank of this.bankalarList" value="{{bank.id}}">{{bank.ad}} ({{bank.mevcutSikayet}})</option>
-      </select>-->
-
       <div class="card detail-card">
-        <div class="form-group"  style="overflow-y: scroll; height:80px;">
-          <div class="form-check" *ngFor="let bank of this.bankalarList" >
+        <div class="form-group checkComponent">
+          <div class="form-check" style="padding-left: 0 !important;" *ngFor="let bank of this.bankalarList" >
             <input type="checkbox" value="{{bank.id}}" (change)="filterBank($event)" ngModel> {{bank.ad}} ({{getBankSikayetNo(bank.ad)}})
           </div>
         </div>
       </div>
 
       <label>Kategori</label>
-      <!--<select class="custom-select" multiple>
-        <option value="0"> </option>
-        <option *ngFor="let kategori of this.kategorilerList" value="{{kategori.id}}">{{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
-        </option>
-      </select>-->
-
       <div class="card detail-card">
-        <div class="form-group"  style="overflow-y: scroll; height:80px;">
-          <div class="form-check" *ngFor="let kategori of this.kategorilerList" >
-            <input type="checkbox" value="{{kategori.id}}" (change)="filterKategori($event)" ngModel> {{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
+        <div class="form-group checkComponent">
+          <div class="form-check" style="padding-left: 0 !important;" *ngFor="let kategori of this.kategorilerList">
+            <input type="checkbox" value="{{kategori.id}}" (change)="filterKategori($event)"
+                   ngModel> {{kategori.kategoriAdi}}({{getKategoriSikayetNo(kategori.id)}})
           </div>
         </div>
       </div>

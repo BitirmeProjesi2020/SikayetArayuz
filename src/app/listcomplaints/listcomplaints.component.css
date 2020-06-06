@@ -1,6 +1,6 @@
 .position-mid {
   margin: auto;
-  width: 80%;
+  width: 85%;
   height: 100%;
 }
 
@@ -21,4 +21,10 @@
 
 .solved{
   color: #20A8D8;
+}
+
+.checkComponent {
+  overflow-y: scroll;
+  height:80px;
+  margin: 7px
 }
