@@ -20,7 +20,7 @@ export class EntercomplaintComponent implements OnInit {
   bankalarList: Bankalar[];
   kategorilerList: Kategoriler[];
   baslik: string;
-  detay: string;
+  detay: string = '';
   musteri: boolean = false;
   telNo: string;
   deeplearning: Deeplearning;

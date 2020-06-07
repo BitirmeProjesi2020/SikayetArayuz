@@ -16,31 +16,31 @@
           </div>
           <div class="row">
             <div class="col-auto mr-auto">
-              <h6>{{sikayet.sikayetBasligi}}</h6>
+              <h6 *ngIf="sikayet">{{sikayet.sikayetBasligi}}</h6>
             </div>
             <div class="col-auto">
-              <h6>{{sikayet.bankaId.ad}}</h6>
+              <h6 *ngIf="sikayet">{{sikayet.bankaId.ad}}</h6>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-auto mr-auto">
-              <h6>{{sikayet.kullanici}}</h6>
+              <h6 *ngIf="sikayet">{{sikayet.kullanici}}</h6>
             </div>
             <div class="col-auto">
-              <h6>{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
+              <h6 *ngIf="sikayet">{{sikayet.sikayetTarihi | date:'dd/MM/yyyy HH:mm'}}</h6>
             </div>
           </div>
 
           <div class="row">
             <div class="col-auto mr-auto">
-              <label style="text-align: start">{{sikayet.sikayetIcerigi}}</label>
+              <label *ngIf="sikayet" style="text-align: start">{{sikayet.sikayetIcerigi}}</label>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-auto mr-auto">
-              <h6>Kategori: {{sikayet.sikayetKategorisi}}</h6>
+              <h6 *ngIf="sikayet">Kategori: {{sikayet.sikayetKategorisi}}</h6>
             </div>
           </div>
 
@@ -118,39 +118,42 @@
 
   <div class="col-3">
     <!-- Sikayet Bankası veya Musteri -->
-    <div *ngIf="bankaBox; else musteriBlock" class="card border-info detail-card">
-      <div class="card-body">
-        <h5 class="card-title text-center">{{sikayet.bankaId.ad}} İstatistikleri</h5>
-
-        <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
-        Toplam Şikayet Sayısı: {{sikayet.bankaId.mevcutSikayet}}
-        <br>
-
-        <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
-        Çözülen Şikayet Sayısı: {{sikayet.bankaId.cozulenSikayet}}
-        <br>
-
-        <div *ngIf="sikayet.bankaId.mevcutSikayet!=0">
-          <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-          <label>Memnuniyet Oranı: %{{(sikayet.bankaId.cozulenSikayet) / (sikayet.bankaId.mevcutSikayet) * 100}}</label>
-        </div>
-        <div *ngIf="sikayet.bankaId.mevcutSikayet===0">
-          <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-          <label>Memnuniyet Oranı: %0</label>
-        </div>
-        <br>
-      </div>
-    </div>
-    <ng-template #musteriBlock>
-      <div class="card border-info detail-card">
+    <div *ngIf="sikayet !== undefined && sikayet.bankaId !== undefined">
+      <div *ngIf="bankaBox ; else musteriBlock" class="card border-info detail-card">
         <div class="card-body">
-          <h5 class="card-title text-center">Müşteri Bilgileri</h5>
-          <strong>Ad-Soyad: </strong>{{kullanici.adSoyad}}<br>
-          <strong>E-mail Adresi: </strong>{{kullanici.email}}<br>
-          <strong>Telefon Numarası: </strong>{{sikayet.sikayetTelefonNo}}
+          <h5 class="card-title text-center">{{sikayet.bankaId.ad}} İstatistikleri</h5>
+
+          <img src="/assets/img/bankIcon/totalComp.png" width="30" height="30">
+          Toplam Şikayet Sayısı: {{sikayet.bankaId.mevcutSikayet}}
+          <br>
+
+          <img src="/assets/img/bankIcon/solvedComp.png" width="30" height="30">
+          Çözülen Şikayet Sayısı: {{sikayet.bankaId.cozulenSikayet}}
+          <br>
+
+          <div *ngIf="sikayet.bankaId.mevcutSikayet!==0">
+            <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+            <label>Memnuniyet Oranı: %{{((sikayet.bankaId.cozulenSikayet) / (sikayet.bankaId.mevcutSikayet) * 100).toFixed(0)}}</label>
+          </div>
+          <div *ngIf="sikayet.bankaId.mevcutSikayet===0">
+            <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
+            <label>Memnuniyet Oranı: %0</label>
+          </div>
+          <br>
         </div>
       </div>
-    </ng-template>
+      <ng-template #musteriBlock>
+        <div class="card border-info detail-card">
+          <div class="card-body">
+            <h5 class="card-title text-center">Müşteri Bilgileri</h5>
+            <strong>Ad-Soyad: </strong>{{kullanici.adSoyad}}<br>
+            <strong>E-mail Adresi: </strong>{{kullanici.email}}<br>
+            <strong>Telefon Numarası: </strong>{{sikayet.sikayetTelefonNo}}
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
     <!-- Müsteri Seçenek -->
     <div *ngIf="radioBox" class="card border-info detail-card" style="padding: 20px; text-align: left">
       <div class="form-group">

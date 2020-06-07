@@ -29,7 +29,7 @@
           <br>
           <div *ngIf="bank.mevcutSikayet!=0">
             <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
-            <label>Memnuniyet Oranı: %{{(bank.cozulenSikayet) / (bank.mevcutSikayet) * 100}}</label>
+            <label>Memnuniyet Oranı: %{{((bank.cozulenSikayet) / (bank.mevcutSikayet) * 100).toFixed(0)}}</label>
           </div>
           <div *ngIf="bank.mevcutSikayet===0">
             <img src="/assets/img/bankIcon/happyRate.png" width="30" height="30">
