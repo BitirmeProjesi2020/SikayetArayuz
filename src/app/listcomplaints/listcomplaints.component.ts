@@ -26,6 +26,8 @@ export class ListcomplaintsComponent implements OnInit {
   selectedBankalar: Bankalar[] = [];
   selectedKategori: Kategoriler[] = [];
 
+  karakterSiniri: number = 350;
+
   constructor(private router: Router,
               private cookieService: CookieService,
               private bankalarService: BankalarService,
@@ -204,5 +206,12 @@ export class ListcomplaintsComponent implements OnInit {
 
   showDetailComp(compId: number) {
     this.router.navigate(['/sikayet-detay/' + compId]);
+  }
+
+  sikayetKisalt(metin: string): string {
+    if (metin.length > this.karakterSiniri) {
+      metin = metin.substring(0, this.karakterSiniri);
+    }
+    return metin;
   }
 }
