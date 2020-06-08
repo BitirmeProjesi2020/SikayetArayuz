@@ -21,7 +21,7 @@ export abstract class BaseService {
     if (location.href.indexOf('localhost') > -1) {
       baseUrl = 'http://localhost:8080/';
     } else {
-      baseUrl = '/';
+      baseUrl = 'http://ercanozkan.online:8080/';
     }
     return baseUrl;
   }

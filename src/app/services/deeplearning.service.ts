@@ -9,7 +9,17 @@ export class DeeplearningService {
   constructor(private http: HttpClient) {
   }
 
+  getBaseUrl(): string {
+    let baseUrl = '';
+    if (location.href.indexOf('localhost') > -1) {
+      baseUrl = 'http://localhost:5000/sikayet';
+    } else {
+      baseUrl = 'http://ercanozkan.online:5000/sikayet';
+    }
+    return baseUrl;
+  }
+
   getKategori(deeplearning: Deeplearning) {
-    return this.http.post('http://localhost:5000/sikayet', deeplearning);
+    return this.http.post(this.getBaseUrl(), deeplearning);
   }
 }
