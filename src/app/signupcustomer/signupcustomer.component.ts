@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Kullanicilar } from '../models/kullanicilar.model';
-import { KullanicilarService } from '../services/kullanicilar.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Kullanicilar} from '../models/kullanicilar.model';
+import {KullanicilarService} from '../services/kullanicilar.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signupcustomer',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signupcustomer.component.css']
 })
 export class SignupcustomerComponent implements OnInit {
-  alertText: string = "";
+  alertText: string = '';
   email: string;
   kullanici: Kullanicilar;
   password: string;
@@ -17,25 +17,25 @@ export class SignupcustomerComponent implements OnInit {
   username: string;
 
   constructor(private kullanicilarService: KullanicilarService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   signUpBtn() {
-    if (this.username == undefined || this.email == undefined || this.password == undefined) {
-      this.alertText = "Tüm alanları doldurunuz!";
-    }
-    else if (this.password != this.passwordTkr) {
-      this.alertText = "Şifrenizi kontrol edip tekrar deneyin!";
-    }
-    else {
-      this.kullanici = { id: null, adSoyad: this.username, email: this.email, password: this.password }
-
-      this.kullanicilarService.add(this.kullanici).pipe().subscribe((data) => {
-        this.alertText = "Kayıt işlemi başarılı.";
-        this.router.navigate(['']);
-      });
+    if (this.username !== undefined && this.username !== '' && this.email !== undefined && this.email !== '' && this.password !== undefined && this.password !== '') {
+      if (this.password !== this.passwordTkr) {
+        this.alertText = 'Şifrenizi kontrol edip tekrar deneyin!';
+      } else {
+        this.kullanici = new Kullanicilar(null, this.username, this.email, this.password);
+        this.kullanicilarService.add(this.kullanici).pipe().subscribe((data) => {
+          this.alertText = 'Kayıt işlemi başarılı.';
+          this.router.navigate(['']);
+        });
+      }
+    } else {
+      this.alertText = 'Tüm alanları doldurunuz!';
     }
   }
 }
