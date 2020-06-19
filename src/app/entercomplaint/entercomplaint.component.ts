@@ -79,7 +79,7 @@ export class EntercomplaintComponent implements OnInit {
 
   sendComp() {
     const id = Number(this.cookieService.get('uyeId'));
-    if ((this.baslik != undefined && this.baslik != '') && (this.telNo != undefined && this.telNo != '' && this.telNo.length === 10) && (this.detay != undefined && this.detay != '') && (this.selectedBankId != 'Şikayet edeceğiniz bankayı giriniz.' && this.selectedBankId != '0') && (this.selectedKategoriId != 'Şikayet kategorisini seçiniz.' && this.selectedKategoriId != '0')) {
+    if ((this.baslik != undefined && this.baslik != '') && (this.telNo != undefined && this.telNo != '' && this.telNo.length === 10) && (this.detay != undefined && this.detay != '' && Number(this.selectedKategoriId) > 0) && (this.selectedBankId != 'Şikayet edeceğiniz bankayı giriniz.' && this.selectedBankId != '0') && (this.selectedKategoriId != 'Şikayet kategorisini seçiniz.' && this.selectedKategoriId != '0')) {
       const sikayet = new Sikayetler(null, Number(this.selectedBankId), this.baslik, this.telNo, this.detay, Number(this.selectedKategoriId), null, false, true, id);
       this.sikayetlerService.add(sikayet).pipe().subscribe((data) => {
         this.updateBank();
